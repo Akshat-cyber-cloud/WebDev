@@ -1,0 +1,62 @@
+@font-face {
+    font-family: yo;
+    src: url(./NeueHaasDisplayMediumItalic.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: yo;
+}
+
+#outer {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+#inner-left{
+    height: 100%;
+    width: 100%;
+    background: url(https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg);
+    background-size: cover;
+    background-position: center;
+    padding-top: 150px;
+}
+
+#content{
+    font-size: 140px;
+    font-weight: bold;
+    color: white;
+}
+#content1{
+    font-size: 100px;
+    font-weight: bold;
+    color: white;
+}
+#content2{
+    font-size: 110px;
+    font-weight: bold;
+    color: white;
+}
+
+#inner-right{
+    height: 50%;
+    width: 50%;
+    padding-top: 150px;
+    text-align: right;
+}
+
+#content-right{
+    text-align: right;
+    padding-right: 30px;
+    color: white;
+    font-size: 100px;
+    font-weight: bold;
+}
