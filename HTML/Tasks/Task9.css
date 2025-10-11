@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    padding: 50px;
+    gap: 20px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    "custom scheduling inbox"
+    "custom wallet inbox"
+    "send send reminders";
+}
+
+#custom{ 
+    grid-area: custom; background-color: #c8b6ff; 
+    background: url(https://plus.unsplash.com/premium_photo-1682124752476-40db22034a58?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+}      
+#scheduling{ 
+    grid-area: scheduling; background-color: #ffafcc; 
+    background: url(https://images.unsplash.com/photo-1640903581708-8d491706515b?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position:center;
+}  
+#wallet{ 
+    grid-area: wallet; background-color: #caffbf; 
+    background: url(https://images.unsplash.com/photo-1585509921890-93586f72ca76?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size:cover;
+    background-position: center;
+
+}      
+#inbox{ 
+    grid-area: inbox; background-color: #ffd6a5; 
+    background: url(https://plus.unsplash.com/premium_photo-1722897350308-86c223f889b4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-size: cover;
+}       
+#send{ 
+    grid-area: send; background-color: #ffadad; 
+    background: url(https://plus.unsplash.com/premium_photo-1754233210904-354c3c2601bd?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-size: cover;
+}        
+#reminders{ 
+    grid-area: reminders; background-color: #9bf6ff; 
+    background: url(https://images.unsplash.com/photo-1594846198287-f7aefab844de?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+}
+
+.box {
+  border-radius: 20px;
+  background-color: #ddd;
+}

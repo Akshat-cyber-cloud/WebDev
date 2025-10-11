@@ -1,0 +1,113 @@
+@font-face {
+    font-family: yo;
+    src: url(./NeueHaasDisplayMediumItalic.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    font-family: yo;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+#main a{
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+#nav{
+    display: flex;
+    /* justify-content: left; */
+    align-items: left;
+    height: 60px;
+    width: 100%;
+    /* background-color: black; */
+}
+
+#main h2{
+    color: black;
+    position: absolute;
+    left: 45%;
+    padding: 10px 20px;
+}
+
+#main h1{
+    color: black;
+    position: absolute;
+    font-size: 380px;
+}
+
+#bottom-left{
+    height: 40%;
+    width: 30%;
+    /* background-color: black; */
+    position: absolute;
+    bottom: 0;
+}
+
+#bottom-left h3{
+    color: black;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+#bottom-left p{
+    color: black;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+#image1 img{
+    height: 250px;
+    width: 160px;
+    position: absolute;
+    left: 45%;
+    bottom: 15%;
+}
+
+#image2 img{
+    height: 300px;
+    width: 200px;
+    position: absolute;
+    left: 75%;
+    bottom: 15%;
+}
+
+#image3 img{
+    height: 280px;
+    width: 180px;
+    position: absolute;
+    left: 60%;
+    bottom: 35%;
+}
+
+#bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;            
+    position: absolute;             
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+}
+#bottom h2 {
+    margin: 0; /* remove default margin */
+    font-size: 24px;
+    color: black;
+}
+

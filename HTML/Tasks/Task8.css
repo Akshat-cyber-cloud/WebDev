@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+}
+
+#main h1{
+    font-size: 150px;
+    color: transparent;
+    padding-top: 5%;
+    background: linear-gradient(rgb(114, 71, 71),rgb(95, 53, 53));
+
+    background-clip: text;
+}
+
+
+#main h2{
+    font-size: 80px;
+    color: transparent;
+    padding-top: 2%;
+    background: url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXp1Y2VodXVyemxxemV1MzFlbzNycmdnZWYwc3l3YzFlNXp3dHRzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ruw1bRYN0IXNS/giphy.gif);
+
+    background-clip: text;
+}
+
+#main h3{
+    font-size: 65px;
+    color: transparent;
+    padding-top: 2%;
+    -webkit-text-stroke: 1px white;
+}
+
+#scroll-container{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    border-radius: 15px;
+    gap: 20px;
+    background-color: black;
+}
+
+#scroll-container img{
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 10px 10px 12px white;
+}
+
+#scroll-container::-webkit-scrollbar{
+    display: none;
+}
