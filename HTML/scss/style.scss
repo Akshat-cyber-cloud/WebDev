@@ -1,0 +1,73 @@
+@use "sass:color";
+
+// =====================
+// VARIABLES
+// =====================
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$text-light: #ffffff;
+$font-stack: 'Poppins', sans-serif;
+
+
+body {
+  font-family: $font-stack;
+  background: linear-gradient(120deg, $primary-color, $secondary-color);
+  color: $text-light;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px 30px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  button {
+    background: $text-light;
+    color: $primary-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+
+    &:hover {
+      // ✅ Modern color function (no warnings)
+      background: color.scale($text-light, $lightness: -10%);
+      transform: scale(1.05);
+    }
+  }
+}
