@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+  padding: 2.5rem 2.5rem;
+}
+#main #nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#main #view1 {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+}
+#main #view2 {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+}
+#main #view2 h1 {
+  font-size: clamp(10rem, 19vw, 25rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  background: url("https://i.pinimg.com/originals/ea/f9/94/eaf99498c89699f67be1ea586d24dbec.jpg") center/cover no-repeat;
+  background-size: 100%;
+  background-position: center;
+  transform: scaleY(2.5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#main #view3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15rem;
+  color: rgb(209, 205, 205);
+  background-image: url("https://i.pinimg.com/736x/7b/87/d6/7b87d601d15272a34305c958c1395a54.jpg");
+  background-repeat: no-repeat;
+  background-position: center 20%;
+  background-size: cover;
+  background-blend-mode: overlay;
+  margin-top: 5rem;
+  height: 450px;
+}
+#main #view3 #part1 p {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 550;
+  padding: 0.7rem;
+}
+#main #view3 #part2 {
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
+  padding: 1rem;
+}
+#main #view3 #part2 h1 {
+  font-size: 3.5rem;
+}
+#main #view3 #part2 p {
+  font-weight: 600;
+}
+#main #view4 {
+  margin-top: 1rem;
+  text-align: center;
+}
+#main #view5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  position: relative;
+}
+#main #view5 #part1 {
+  font-size: 1.3rem;
+  position: absolute;
+  left: 35%;
+  top: 65%;
+}
+#main #view5 #part2 {
+  font-size: 9rem;
+  color: red;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,422 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+  padding: 1.2rem 1rem;
+}
+#main #nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+#main #nav #nav-links {
+  display: none;
+  list-style: none;
+}
+#main #nav #nav-links li {
+  display: inline-block;
+  margin-left: 2rem;
+}
+#main #nav #nav-links li a {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+#main #nav #nav-links li a:hover {
+  color: #66ccff;
+}
+#main #nav #logo img {
+  height: 45px;
+}
+#main #nav #sider {
+  display: block;
+  font-size: 2rem;
+  cursor: pointer;
+}
+#main #nav #sider i {
+  font-size: 2rem;
+}
+#main #view1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1rem;
+  gap: 1rem;
+}
+#main #view1 #box img {
+  width: 100%;
+  height: auto;
+}
+#main #view1 #content h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+}
+#main #view2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  gap: 1rem;
+}
+#main #view2 #content2 h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+}
+#main #view3 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  gap: 1.5rem;
+}
+#main #view3 #community {
+  border-top: 1.5px solid gray;
+  padding: 3rem 0rem;
+}
+#main #view3 #community h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: left;
+}
+#main #view3 #community p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: gray;
+}
+#main #view3 #community img {
+  width: 100%;
+  height: auto;
+}
+#main #view4 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  gap: 1.5rem;
+}
+#main #view4 #right img {
+  width: 100%;
+  height: auto;
+}
+#main #view4 #left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#main #view4 #left h2 {
+  color: gray;
+  font-weight: 500;
+}
+#main #view4 #left h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+#main #view4 #left p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: black;
+}
+#main #view4 #left #btn1 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+#main #view4 #left #btn2 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#main #view5 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1rem;
+  gap: 1.5rem;
+  background: linear-gradient(#FFFFFE, #FEFEEE, #FCFCDA);
+}
+#main #view5 #left img {
+  width: 100%;
+  height: auto;
+}
+#main #view5 #right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#main #view5 #right h2 {
+  color: gray;
+  font-weight: 500;
+}
+#main #view5 #right h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+#main #view5 #right p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: black;
+}
+#main #view5 #right #btn1 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: #3535FF;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#main #view6 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  gap: 1.5rem;
+}
+#main #view6 #right img {
+  width: 100%;
+  height: auto;
+}
+#main #view6 #left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#main #view6 #left h2 {
+  color: gray;
+  font-weight: 500;
+}
+#main #view6 #left h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+#main #view6 #left p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: black;
+}
+#main #view6 #left #btn1 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: blue;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+#main #view7 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1rem;
+  gap: 1.5rem;
+  background: linear-gradient(#FFFFFE, #FEFEEE, #FCFCDA);
+}
+#main #view7 #left img {
+  width: 100%;
+  height: auto;
+}
+#main #view7 #right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#main #view7 #right h2 {
+  color: gray;
+  font-weight: 500;
+}
+#main #view7 #right h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+#main #view7 #right p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: black;
+}
+#main #view7 #right #btn1 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: #3535FF;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#main #view8 {
+  background: url(https://himanshuaaithan.github.io/assignment-12/img/background.png);
+  background-color: #050556;
+  margin-top: 2rem;
+  width: 100%;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+#main #view8 h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+#main #view8 p {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+}
+#main #view8 #btn1 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+#main #view8 #btn2 {
+  width: 200px;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+#main #bottom1 {
+  width: 100%;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+#main #bottom1 #box1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+#main #bottom1 #box1 h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+#main #bottom1 #box1 p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1;
+}
+#main #bottom1 #box2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+#main #bottom1 #box2 h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+#main #bottom1 #box2 p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1;
+}
+#main #bottom1 #box3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+#main #bottom1 #box3 h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+#main #bottom1 #box3 p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1;
+}
+#main #bottom2 {
+  width: 100%;
+  padding: 1rem 1rem;
+  text-align: center;
+}
+#main #bottom2 i {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  #view1 {
+    display: flex;
+    flex-direction: row !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  #view1 #box img {
+    height: 600px !important;
+    width: 550px !important;
+    -o-object-fit: contain;
+       object-fit: contain;
+    -o-object-position: left;
+       object-position: left;
+    display: inline-block;
+  }
+  #content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-top: 8rem;
+  }
+  section#view1 div#content h2 {
+    text-align: center !important;
+    font-size: 4rem !important;
+  }
+}/*# sourceMappingURL=style.css.map */
