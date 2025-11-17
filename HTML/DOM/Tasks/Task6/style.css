@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+button{
+    padding: 10px 20px;
+    color: black;
+    font-weight: 600;
+    border: none;
+    border-radius: 2px;
+    position: relative;
+    z-index: 10;
+}
+
+
+h1 {
+    color: white;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+button:active{
+    scale: 0.95;
+    cursor: pointer;
+    background-color: crimson;
+}

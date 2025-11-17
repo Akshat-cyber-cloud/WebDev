@@ -152,3 +152,13 @@ for(let key in obj){
 setTimeout(function(){
     console.log("Time is up");
 }, 2000)
+
+
+function runTwice(fn){
+    fn();
+    fn();
+}
+
+runTwice(function() {
+    console.log("hello");
+})
