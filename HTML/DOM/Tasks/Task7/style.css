@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    padding: 10px 20px;
+    border: none;
+    background-color: red;
+}
+
+.card{
+    width: 450px;
+    background-color: aliceblue;
+    padding: 50px 30px;
+    margin-bottom: 40px;
+}
+
+.card p{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.card p span{
+    font-weight: 600;
+    color: crimson;
+}
+
+.outer{
+    height: 20px;
+    border-radius: 50px;
+    width: 100%;
+    background-color: gray;
+}
+
+.inner{
+    height: 100%;
+    width: 0%;
+    border-radius: 50px;
+    background-color: red;
+}
+
+.bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.bottom h2{
+    font-size: 60px;
+}
+
+.bottom button{
+    padding: 12px 25px;
+    background-color: green;
+    color: whie;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.bottom button:active{
+    scale: 0.95;
+    cursor: pointer;
+}
+
