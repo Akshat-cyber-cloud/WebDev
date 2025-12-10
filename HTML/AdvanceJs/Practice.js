@@ -61,6 +61,7 @@ console.log("End");
 // Question 1 
 
 function afterDelay(time,callback){
+    console.log("First");
     setTimeout(() => {
         callback();
     },time);
