@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        .context-menu {
+            width: 260px;
+            background: rgba(32, 32, 32, 0.65);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 8px 0;
+            color: white;
+            position: absolute;
+            display: none;
+            z-index: 9999;
+        }
+
+        .menu-item {
+            height: 36px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .separator {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 6px 0;
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            opacity: 0.85;
+        }
+
+        .shortcut {
+            margin-left: auto;
+            opacity: 0.6;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+
+        <div class="context-menu" id="contextMenu">
+            <div class="menu-item"><i class="ri-layout-grid-line"></i> View</div>
+            <div class="menu-item"><i class="ri-arrow-up-down-line"></i> Sort by</div>
+            <div class="menu-item"><i class="ri-refresh-line"></i> Refresh</div>
+
+            <div class="separator"></div>
+
+            <div class="menu-item">
+                <i class="ri-arrow-go-back-line"></i>
+                Undo Delete
+                <span class="shortcut">Ctrl + Z</span>
+            </div>
+
+            <div class="menu-item"><i class="ri-add-line"></i> New</div>
+
+            <div class="separator"></div>
+
+            <div class="menu-item"><i class="ri-computer-line"></i> Display settings</div>
+            <div class="menu-item"><i class="ri-paint-brush-line"></i> Personalize</div>
+
+            <div class="separator"></div>
+
+            <div class="menu-item"><i class="ri-terminal-line"></i> Open in Terminal</div>
+            <div class="menu-item"><i class="ri-more-2-fill"></i> Show more options</div>
+        </div>
+
+        <footer>
+            <div id="box1">
+                <img src="./ImageBox/icons8-rain-cloud-48.png" alt="" class="imgC">
+                <span>16°C <br> Cloudy</span>
+            </div>
+            <div id="box2">
+                <img src="./ImageBox/icons8-windows-11-48.png" alt="" class="imgC">
+                <input type="search" name="" id="" placeholder="🔍 Search">
+                <img src="./ImageBox/icons8-microsoft-copilot-48.png" alt="" class="imgC">
+                <img src="./ImageBox/icons8-file-explorer-new-48.png" alt="" class="imgC">
+                <img src="./ImageBox/icons8-gmail-48.png" alt="" class="imgC">
+                <img src="./ImageBox/icons8-google-drive-48.png" alt="" class="imgC">
+                <img src="./ImageBox/icons8-brave-web-browser-48.png" alt="" class="imgC">
+            </div>
+            <div id="box3">
+                <i class="ri-arrow-up-s-line"></i>
+                <img src="./ImageBox/icons8-microsoft-onedrive-2019-48.png" alt="" class="onedrive">
+                <i class="ri-wifi-line"></i>
+                <i class="ri-volume-mute-line"></i>
+                <i class="ri-battery-low-line"></i>
+                <button id="fullBtn">Go Fullscreen</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

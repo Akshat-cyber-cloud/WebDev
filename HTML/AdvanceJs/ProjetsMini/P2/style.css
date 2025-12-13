@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+#main{
+    height: 100%;
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    background: url('https://images.pexels.com/photos/11654721/pexels-photo-11654721.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+footer{
+    height: 45px;
+    margin-top: auto;
+    background-color: #0E1A2B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imgC{
+    height: 32px;
+    width: 32px;
+}
+
+#box1{
+    display: flex;
+    gap: 0.7rem;
+    color: white;
+    margin-left: 1rem;
+}
+
+#box1 span{
+    font-size: 13px;
+}
+
+#box2{
+    display: flex;
+    gap: 1rem;
+}
+
+#box2 input{
+    border-radius: 20px;
+    border: none;
+}
+
+#box3{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 1rem;
+}
+
+.onedrive{
+    height: 24px;
+    width: 24px;
+}
+
+i{
+    font-size: 22px;
+    color: white;
+}
+
+
