@@ -11,7 +11,7 @@ document.addEventListener('click', () => {
     menu.style.display = "none";
 })
 
-BsListNested.addEventListener('click', () => {
+fullBtn.addEventListener('click', () => {
     if(!document.fullscreenElement){
         document.documentElement.requestFullscreen();
     }

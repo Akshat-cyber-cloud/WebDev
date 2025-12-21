@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="box1">
+            <div id="box1-left" class="weather-card">
+                <p class="location" id="city">Loading...</p>
+
+                <h1 class="temperature">
+                    <span id="temp">--</span>°
+                </h1>
+
+                <p class="condition" id="condition">Fetching weather...</p>
+
+                <div class="meta">
+                    <span>Humidity: <span id="humidity">--</span>%</span>
+                    <span>Wind: <span id="wind">--</span> km/h</span>
+                </div>
+            </div>
+
+            <div id="box1-right" class="highlights">
+
+                <div class="highlight large">
+                    <p class="label">Wind Status</p>
+                    <svg viewBox="0 0 100 30" class="wave">
+                        <path d="M0 18 C15 10 30 22 45 16 60 10 75 20 100 14" />
+                    </svg>
+                    <h2>7.9 <span>km/h</span></h2>
+                </div>
+
+                <div class="highlight large">
+                    <p class="label">UV Index</p>
+                    <svg viewBox="0 0 100 55" class="uv">
+                        <path class="track" d="M10 50 A40 40 0 0 1 90 50" />
+                        <path class="progress" d="M10 50 A40 40 0 0 1 90 50" />
+                    </svg>
+                    <h2>5.5</h2>
+                </div>
+
+                <div class="highlight large">
+                    <p class="label">Sunrise & Sunset</p>
+                    <svg viewBox="0 0 100 55" class="sun">
+                        <path d="M10 50 A40 40 0 0 1 90 50" />
+                        <circle cx="50" cy="12" r="3.5" />
+                    </svg>
+                    <div class="time">
+                        <span>5:50 AM</span>
+                        <span>6:30 PM</span>
+                    </div>
+                </div>
+
+                <div class="highlight small">
+                    <p class="label">Humidity</p>
+                    <h3>84%</h3>
+                </div>
+
+                <div class="highlight small">
+                    <p class="label">Visibility</p>
+                    <h3>3 km</h3>
+                </div>
+
+                <div class="highlight small">
+                    <p class="label">Feels Like</p>
+                    <h3>42°</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="box2">
+            <div id="box2-left">
+                <h3>7 Days ForeCast</h3>
+            </div>
+            <div id="box2-right">
+                <h3>Weather Condition Map</h3>
+            </div>
+        </div>
+
+        <div id="box3">
+            <div id="box3-left">
+
+            </div>
+            <div id="box3-right">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

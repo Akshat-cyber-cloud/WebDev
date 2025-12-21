@@ -1,0 +1,224 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Navbar */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 30px;
+}
+
+nav .name {
+  font-size: 1.3rem;
+}
+
+nav .services {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+nav .services a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+nav .book button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background: #000;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:active {
+  transform: scaleX(1.04);
+}
+
+/* BODY */
+
+.main {
+  min-height: 80vh;
+  width: 100%;
+  padding: 2.5rem;
+}
+
+.img {
+  min-height: 80vh;
+  background: url('https://images.pexels.com/photos/773063/pexels-photo-773063.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 2rem;
+}
+
+.main .heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-size: 2.1rem;
+}
+
+.main .heading1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.main .btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn button{
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  background-color: #000;
+}
+
+/* Section */
+
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem;
+}
+
+.box .left{
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.box .right{
+  font-size: 1.5rem;
+}
+
+/* Section 1 */
+
+.outer-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem;
+  overflow: hidden;
+}
+
+.box1{
+  height: 300px;
+  width: 450px;
+  background-color: black;
+  border-radius: 1.5rem;
+}
+
+.box1 h3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: gray;
+}
+
+.box2{
+  height: 300px;
+  width: 450px;
+  /* background-color: aqua; */
+  background: url('https://images.pexels.com/photos/11204756/pexels-photo-11204756.jpeg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.5rem;
+}
+
+.box3{
+  height: 300px;
+  width: 450px;
+  background-color: black;
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+
+.box3 h1 {
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.box3 h2 {
+  font-size: 1.3rem;
+  margin-top: 6px;
+  color: #0f172a;
+}
+
+.desc {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 15px 0 25px;
+  line-height: 1.5;
+}
+
+.levels {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-right: 1rem;
+}
+
+.level {
+  display: grid;
+  grid-template-columns: 90px 1fr 30px;
+  align-items: center;
+  gap: 10px;
+}
+
+.label {
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.value {
+  font-size: 14px;
+  color: #0f172a;
+  text-align: right;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e2e8f0;
+}
+
+.dot.active {
+  background: #38bdf8;
+}
