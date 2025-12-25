@@ -202,8 +202,8 @@ function pomodoroTimer() {
 
 pomodoroTimer();
 
-let apiKey = process.env.WEATHER_API_KEY;
-// let apiKey = "f2481a7bd81e4dc2b61135152252412";
+// let apiKey = process.env.WEATHER_API_KEY;
+let apiKey = "f2481a7bd81e4dc2b61135152252412";
 var city = "Phagwara";
 
 
