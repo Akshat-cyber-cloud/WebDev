@@ -47,25 +47,68 @@ body {
     overflow: hidden;
 }
 
-
-
-nav {
-    position: fixed;
-    width: 100%;
-    height: 60px;
-    background-color: var(--tri2);
-}
-
 section.AllElems {
     height: 100%;
     width: 100%;
-    padding: 40px;
-    padding-top: 80px;
+    padding: 30px;
+
+    overflow: auto;
+    position: absolute;
+}
+
+.AllElems header {
+    height: 350px;
+    width: 100%;
+    background-image: url('https://images.unsplash.com/photo-1561409037-feee9e2783c2?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
+}
+
+header .header1 h1 {
+    font-size: 80px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+header .header1 h2 {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+header .header1 h4 {
+    font-size: 60px;
+    font-weight: 500;
+}
+
+header .header2 h2 {
+    font-size: 60px;
+    font-weight: 800;
+}
+
+header .header2 h4 {
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+header .header2 h3 {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+
+
+.AllElems .AllFeatuers {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 40px;
-    position: absolute;
 }
 
 .elem {
@@ -426,7 +469,7 @@ section.AllElems {
     font-family: 'Aeonik', sans-serif;
     font-size: 1.5rem;
     color: #D4AF37;
- 
+
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -468,4 +511,189 @@ section.AllElems {
         width: 95%;
         padding: 40px;
     }
+}
+
+.pomodoro-page {
+    /* display: block; */
+    position: relative;
+}
+
+.pomodoro-page .pomo-timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.pomo-timer h1 {
+    font-size: 100px;
+}
+
+.pomo-timer button {
+    background-color: var(--tri2);
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 5px 3px black;
+    transition: all ease 0.2s;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pomo-timer button:active {
+    box-shadow: 0px 0px 0px black;
+}
+
+/* Daily Goals Styles */
+.goals-page .goals-container {
+    height: 90%;
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto 0;
+    color: white;
+}
+
+.goals-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.goals-header h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 20px;
+    background-color: var(--sec);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    transition: width 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+.progress-text {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.add-goal-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.add-goal-section input {
+    flex-grow: 1;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--sec);
+    color: white;
+    outline: none;
+}
+
+.add-goal-section button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: var(--tri1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.add-goal-section button:hover {
+    background-color: #5580a0;
+}
+
+.add-goal-section button:active {
+    transform: scale(0.95);
+}
+
+.goals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.goal-item {
+    background-color: var(--sec);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.goal-item.completed {
+    opacity: 0.7;
+    background-color: rgba(35, 76, 106, 0.5);
+}
+
+.goal-item.completed .goal-text {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.goal-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.goal-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    accent-color: var(--tri1);
+}
+
+.goal-text {
+    font-size: 20px;
+    word-break: break-all;
+}
+
+.delete-goal-btn {
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.delete-goal-btn:hover {
+    transform: scale(1.1);
+    color: #ff4c4c;
 }
