@@ -1,33 +1,28 @@
-import React, {useState} from 'react'
-import ListItems from './Components/ListItems';
+import { useState } from "react"
+import React from 'react'
+import Form from './Components/Form'
 
 const App = () => {
 
-  const [users, setUsers] = useState([
-    { id: 1, name: "Aman", active: true },
-    { id: 2, name: "Neha", active: false }
-  ]);
+  const[items,setItems] = useState([]);
 
-  const toggleButton = (id) => {
-    const toggleData = users.map((user) => {
-      if(user.id === id){
-        return {...user, active: !user.active};
-      }else{
-        return user;
-      }
-    });
-    setUsers(toggleData);
+  const btnClick = (text) => {
+    const handleData = {
+      id: Date.now(),
+      text: text
+    };
+
+    setItems([...items,handleData]);
+  }
+
+  const handleDelete = (id) => {
+    const store =  items.filter(item => item.id !== id);
+    setItems(store);
   }
 
   return (
-    <div className='min-h-screen bg-black'>
-      {users.map((user) => (
-        <ListItems
-          key={user.id}
-          user={user}
-          toggleButton={toggleButton}
-        />
-      ))}
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <Form  items = {items} btnClick = {btnClick} handleDelete = {handleDelete} />
     </div>
   )
 }
