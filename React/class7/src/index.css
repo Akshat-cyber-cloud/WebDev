@@ -11,7 +11,75 @@ html,body{
   color: white;
 }
 
-form{
-  background-color: #444;
-  padding: 20px;
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+
+.form input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: rgb(128, 116, 116);
+  color: white;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 12px;
+  color: #111;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.yellow { background: #fde68a; }
+.blue   { background: #bfdbfe; }
+.pink   { background: #fbcfe8; }
+.green  { background: #bbf7d0; }
+.purple { background: #e9d5ff; }
+
+
+.delete-btn {
+  margin-top: 10px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ef4444;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+buttonTo:active{
+  scale: 0.95;
 }

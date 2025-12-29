@@ -1,9 +1,12 @@
 import React from 'react'
 import hero from '../assets/Gemini_Generated_Image_9h2c4z9h2c4z9h2c.png'
+import Aside from './Aside'
+
 
 const Home = () => {
     return (
         <div className="min-h-screen bg-gray-800 p-10">
+            <Aside />
             <div
                 className="h-screen bg-cover bg-center rounded-4xl p-6 flex flex-col items-start justify-between"
                 style={{
@@ -47,7 +50,102 @@ const Home = () => {
 
                     <div className="min-w-70 h-40 rounded-xl overflow-hidden relative">
 
-                        {/* Background Image */}
+                        <img
+                            src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee"
+                            className="w-full h-full object-cover"
+                            alt=""
+                        />
+
+                        <div className="absolute bottom-3 left-3 right-3 text-white">
+                            <h2 className="text-sm font-semibold">
+                                Legends of the Emerald Mist
+                            </h2>
+
+                            <div className="flex justify-between text-xs text-gray-300 mt-1">
+                                <span>S1, Ep-3</span>
+                                <span>30min 55sec</span>
+                            </div>
+
+                            <div className="mt-2 h-1 bg-gray-600 rounded">
+                                <div className="h-full w-[60%] bg-purple-500 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="min-w-70 h-40 rounded-xl overflow-hidden relative">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee"
+                            className="w-full h-full object-cover"
+                            alt=""
+                        />
+
+                        <div className="absolute bottom-3 left-3 right-3 text-white">
+                            <h2 className="text-sm font-semibold">
+                                Legends of the Emerald Mist
+                            </h2>
+
+                            <div className="flex justify-between text-xs text-gray-300 mt-1">
+                                <span>S1, Ep-3</span>
+                                <span>30min 55sec</span>
+                            </div>
+
+                            <div className="mt-2 h-1 bg-gray-600 rounded">
+                                <div className="h-full w-[60%] bg-purple-500 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="min-w-70 h-40 rounded-xl overflow-hidden relative">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee"
+                            className="w-full h-full object-cover"
+                            alt=""
+                        />
+
+                        <div className="absolute bottom-3 left-3 right-3 text-white">
+                            <h2 className="text-sm font-semibold">
+                                Legends of the Emerald Mist
+                            </h2>
+
+                            <div className="flex justify-between text-xs text-gray-300 mt-1">
+                                <span>S1, Ep-3</span>
+                                <span>30min 55sec</span>
+                            </div>
+
+                            <div className="mt-2 h-1 bg-gray-600 rounded">
+                                <div className="h-full w-[60%] bg-purple-500 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="min-w-70 h-40 rounded-xl overflow-hidden relative">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee"
+                            className="w-full h-full object-cover"
+                            alt=""
+                        />
+
+                        <div className="absolute bottom-3 left-3 right-3 text-white">
+                            <h2 className="text-sm font-semibold">
+                                Legends of the Emerald Mist
+                            </h2>
+
+                            <div className="flex justify-between text-xs text-gray-300 mt-1">
+                                <span>S1, Ep-3</span>
+                                <span>30min 55sec</span>
+                            </div>
+
+                            <div className="mt-2 h-1 bg-gray-600 rounded">
+                                <div className="h-full w-[60%] bg-purple-500 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="min-w-70 h-40 rounded-xl overflow-hidden overflow relative">
+
                         <img
                             src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee"
                             className="w-full h-full object-cover"
