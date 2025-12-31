@@ -1,10 +1,10 @@
 import React from 'react'
-import Home from './Components/Home'
+import Aside from './components/Aside'
 
 const App = () => {
   return (
     <div className='min-h-screen'>
-        <Home />
+      <Aside />
     </div>
   )
 }
