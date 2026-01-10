@@ -1,0 +1,33 @@
+ React - Single Page Application 
+ 
+ 
+ 
+ REACT-ROUTER-DOM used to solve all
+ 
+ --------------------
+ 
+ Types of Router
+
+ 1. Browser Router - Used 99% of the time
+    - Uses HTML5 history API (pushState, replaceState and popstate event) to keep your UI in sync/clean with the URL
+    - contains -/courses/react -- GOOD for SEO
+    - Example: <BrowserRouter></BrowserRouter>
+
+ 2. Hash Router
+    - Uses the hash portion of the URL (window.location.hash) to keep your UI in sync with the URL
+    - contains -/courses.#/react -- NOT GOOD for SEO
+    - Example: <HashRouter></HashRouter>
+
+ 3. Memory Router
+    - Keeps the history of your "URL" in memory (does not read or write to the address bar)
+    - Useful in non-browser environments like React Native or tests
+    - Example: <MemoryRouter></MemoryRouter>
+
+ 4. Static Router (Next.js)
+    - Used for server-side rendering
+    - Never changes location
+    - Example: <StaticRouter location="/somewhere" context={{}}></StaticRouter>
+
+
+Routes - Container
+Route - If URL/path is / then show Home Page
