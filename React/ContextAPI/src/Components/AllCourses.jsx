@@ -3,10 +3,10 @@ import Course from './Course'
 const AllCourses = ({courseData}) => {
   return (
     <div>
-        <Course />
-        <Course />
-        <Course />
-        <Course />
+        <Course courseData={courseData} />
+        <Course courseData={courseData} />
+        <Course courseData={courseData} />
+        <Course courseData={courseData} />
     </div>
   )
 }

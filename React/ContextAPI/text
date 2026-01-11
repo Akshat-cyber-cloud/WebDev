@@ -1,0 +1,36 @@
+--------------------- Props -----------------------
+
+Used to pass data from parent to child
+
+Data is passed manually at each level
+
+Best suited for direct parent–child communication
+
+Easy to understand and implement
+
+No extra setup required
+
+Can cause prop drilling when data is needed deep in the component tree
+
+Better for small, localized data
+
+Does not cause unnecessary re-renders
+
+
+----------------- Context API ---------------
+
+Used to share data globally
+
+Data is accessed directly by any component inside Provider
+
+Best suited for app-level/global data
+
+Requires setup (createContext, Provider, useContext)
+
+Solves the prop drilling problem
+
+Ideal for theme, authentication, language, settings
+
+Overuse may cause performance issues (extra re-renders)
+
+Not recommended for frequently changing data
