@@ -27,5 +27,23 @@ app.get("/notes",(req,res) => {
     res.send(notes);
 })
 
+// Delete Notes
+// params -> /notes/:index need to to delete
+
+app.delete('/notes/:index',(req,res) => {
+    delete notes[req.params.index]
+    res.send("Deleted Sucessfully");
+})
+
+
+// PATCH /notes/:index
+// req.body = {description :- "modify desc."}
+
+app.patch("/notes/:index", (req,res) =>{
+    notes[ req.params.index ].description = req.body.description
+    res.send("Note Updated successfully");
+})
+
+
 
 module.exports = app;
