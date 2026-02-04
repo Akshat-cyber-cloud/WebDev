@@ -10,7 +10,7 @@ const App = () => {
   console.log("Yo");
 
   function fetchNotes() {
-    axios.get('http://localhost:3000/api/notes')
+    axios.get('https://webdev-2-enuk.onrender.com/api/notes')
       .then((res) => {
         setNotes(res.data.notes)
       })
@@ -27,7 +27,7 @@ const App = () => {
 
     console.log(title.value,bio.value);
 
-    axios.post("http://localhost:3000/api/notes", {
+    axios.post("https://webdev-2-enuk.onrender.com/api/notes", {
       title: title.value,
       bio: bio.value
     })
@@ -39,7 +39,7 @@ const App = () => {
   }
 
   function handleDelete(noteId){
-    axios.delete("http://localhost:3000/api/notes/" + noteId)
+    axios.delete("https://webdev-2-enuk.onrender.com/api/notes/" + noteId)
     .then(res => {
       console.log(res.data);
       fetchNotes();
@@ -47,7 +47,7 @@ const App = () => {
   }
 
   function handleUpdate(userId){
-    axios.patch(`http://localhost:3000/api/notes/${userId}`, {
+    axios.patch(`https://webdev-2-enuk.onrender.com/api/notes/${userId}`, {
       bio:editBio
     })
     .then(res => {
