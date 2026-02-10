@@ -4,7 +4,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-
 app.get("/api/test", (req,res) => {
 
     res.status(200).json({
@@ -16,12 +15,6 @@ app.get("/api/test", (req,res) => {
         }
     })
 })
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
-});
-
-
 
 
 module.exports = app;
