@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 
+app.use(express.static('./public'));
+
 
 app.get("/api/test", (req,res) => {
-    // res.send("Data Fetched Properly");
 
     res.status(200).json({
         message: "All Set To GO",
