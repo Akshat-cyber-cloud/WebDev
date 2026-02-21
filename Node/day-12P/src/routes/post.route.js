@@ -12,6 +12,10 @@ postRouter.get("/", identifyUser, postController.getPostsController);
 
 postRouter.get("/details/:postId", identifyUser, postController.getPostDetailsController);
 
+postRouter.post("/like/:postId", identifyUser, postController.likePostController);
+
+// postRouter.post("/unlike/:postId", identifyUser, postController.unlikePostController);
 
 
-module.exports = postRouter;``
+
+module.exports = postRouter;
