@@ -1,12 +1,13 @@
 import { BrowserRouter,Routes,Route } from "react-router";
 import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
+import Feed from "../src/features/post/pages/Feed"
 
 function AppRoutes(){
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<h1>Welcome to the Home Page</h1>}/>
+                <Route path="/" element={<Feed />}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
             </Routes>

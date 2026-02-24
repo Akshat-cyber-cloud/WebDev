@@ -40,7 +40,7 @@ const Login = () => {
                     placeholder='Enter Your Password'
                     onInput={(e) => setPassword(e.target.value)}
                 />
-                <button type='submit'>Login</button>
+                <button className='button primary-button' type='submit'>Login</button>
             </form>
 
             <p>Don't have an account? <Link className='toggleAuthForm' to="/register">Register</Link></p>

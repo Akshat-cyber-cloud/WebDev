@@ -1,3 +1,9 @@
+@mixin flexColumn($gap: 0rem){
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
 main {
     min-height: 100vh;
     width: 100%;
@@ -11,14 +17,10 @@ main {
     height: fit-content;
     min-width: 400px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    @include flexColumn(1.5rem);
 
     form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+        @include flexColumn(1rem);
 
 
         input,
@@ -34,6 +36,10 @@ main {
             background-color: #bd0c23;
             color: whitesmoke;
             cursor: pointer;
+
+            &:active{
+                transform: scale(0.97);
+            }
         }
     }
 

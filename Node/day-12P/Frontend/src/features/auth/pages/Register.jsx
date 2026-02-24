@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router'
 
 const Register = () => {
 
@@ -12,10 +13,12 @@ const Register = () => {
     const [password, setPassword] = useState("")
 
     const {handleRegister} = useAuth()
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault(); 
         handleRegister(username, email, password);
+        navigate('/')
     }
 
     return (
