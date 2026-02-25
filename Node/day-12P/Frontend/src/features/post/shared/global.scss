@@ -1,0 +1,45 @@
+
+$primary-color: red;
+$primary-hover: #4338ca;
+$text-light: #ffffff;
+$text-dark: #1f2937;
+$border-radius: 8px;
+$transition-speed: 0.3s;
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-speed ease-in-out;
+  text-align: center;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.primary-button {
+  @extend .button;
+  background-color: $primary-color;
+  color: $text-light;
+
+  &:hover {
+    background-color: $primary-hover;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
