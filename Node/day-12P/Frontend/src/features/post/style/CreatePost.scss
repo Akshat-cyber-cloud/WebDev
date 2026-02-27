@@ -1,7 +1,20 @@
-.post-image-label{
-    background-color: #ffffffcb;
-    color: black;
-    padding-inline: 1rem;
-    padding-block: 0.6rem;
-    border-radius: 1rem;
+.post-image-label {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
 }

@@ -1,26 +1,23 @@
-
-$primary-color: red;
-$primary-hover: #4338ca;
-$text-light: #ffffff;
-$text-dark: #1f2937;
-$border-radius: 8px;
-$transition-speed: 0.3s;
+$border-radius: 12px;
+$transition-speed: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: $border-radius;
   border: none;
   cursor: pointer;
-  transition: all $transition-speed ease-in-out;
+  transition: all $transition-speed;
   text-align: center;
   text-decoration: none;
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.3);
   }
 
   &:disabled {
@@ -31,15 +28,17 @@ $transition-speed: 0.3s;
 
 .primary-button {
   @extend .button;
-  background-color: $primary-color;
-  color: $text-light;
+  background: linear-gradient(135deg, var(--primary-color), #8b0000);
+  color: white;
+  box-shadow: 0 4px 15px var(--primary-glow);
 
   &:hover {
-    background-color: $primary-hover;
+    background: linear-gradient(135deg, #ff1a1a, var(--primary-color));
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--primary-glow);
   }
 
   &:active {
-    transform: translateY(0);
+    transform: scale(0.98) translateY(0);
   }
 }
