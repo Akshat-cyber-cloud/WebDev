@@ -4,108 +4,304 @@
     gap: $gap;
 }
 
-main {
+/* Base colors - assuming these are defined in style.scss, providing backups */
+$primary: var(--primary-color, #e50914);
+$primary-glow: var(--primary-glow, rgba(229, 9, 20, 0.4));
+$bg: var(--bg-color, #0f0f0f);
+$text-primary: var(--text-primary, #ffffff);
+$text-secondary: var(--text-secondary, #a3a3a3);
+$surface: var(--glass-bg, rgba(20, 20, 20, 0.6));
+$border: var(--glass-border, rgba(255, 255, 255, 0.1));
+
+.auth-layout-container {
     min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    background-color: $bg;
+    padding: clamp(1rem, 3vw, 2rem);
 }
 
-.form-container {
-    height: fit-content;
+.auth-split {
+    display: flex;
     width: 100%;
-    max-width: 420px;
-    padding: 3rem 2.5rem;
-
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
+    max-width: 1200px;
+    min-height: 80vh;
+    background: $surface;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid $border;
     border-radius: 24px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 
-    @include flexColumn(2rem);
+    @media (max-width: 768px) {
+        flex-direction: column;
+        min-height: auto;
+    }
+}
 
-    h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 0.5rem;
+/* Left Side - Visual */
+.auth-visual {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+    position: relative;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        padding: 3rem 2rem;
+        flex: none;
+        min-height: 300px;
+    }
+
+    .visual-content {
+        position: relative;
+        z-index: 2;
+        max-width: 400px;
+    }
+
+    .brand-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
         background: linear-gradient(to right, #fff, #b3b3b3);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
-    form {
-        @include flexColumn(1.2rem);
+    .brand-subtitle {
+        font-size: 1.1rem;
+        color: $text-secondary;
+        line-height: 1.6;
+    }
 
-        input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: var(--transition);
+    .decorative-elements {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
 
-            &::placeholder {
-                color: var(--text-secondary);
-            }
-
-            &:focus {
-                outline: none;
-                border-color: var(--primary-color);
-                box-shadow: 0 0 15px var(--primary-glow);
-                background: rgba(0, 0, 0, 0.4);
-            }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
         }
 
-        button {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-color), #8b0000);
-            color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px var(--primary-glow);
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: $primary;
+            top: -100px;
+            left: -100px;
+        }
 
-            &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px var(--primary-glow);
-                background: linear-gradient(135deg, #ff1a1a, var(--primary-color));
-            }
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(139, 0, 0, 0.6);
+            bottom: -150px;
+            right: -100px;
+        }
+    }
+}
 
-            &:active {
-                transform: scale(0.98) translateY(0);
-            }
+/* Right Side - Form */
+.auth-form-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    background: rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 768px) {
+        padding: 3rem 2rem;
+    }
+
+    .form-wrapper {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-header {
+        margin-bottom: 2.5rem;
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: $text-primary;
+        }
+
+        p {
+            color: $text-secondary;
+            font-size: 0.95rem;
+        }
+    }
+}
+
+/* Common Form Styles */
+.auth-form {
+    @include flexColumn(1.5rem);
+}
+
+.form-actions {
+    margin-top: 1rem;
+}
+
+.animated-button {
+    width: 100%;
+    background: linear-gradient(135deg, $primary, #8b0000);
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px $primary-glow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px $primary-glow;
+        background: linear-gradient(135deg, #ff1a1a, $primary);
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.98) translateY(0);
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.auth-switch {
+    text-align: center;
+    color: $text-secondary;
+    font-size: 0.95rem;
+    margin-top: 2rem;
+
+    .toggleAuthForm {
+        color: $primary;
+        font-weight: 600;
+        text-decoration: none;
+        margin-left: 0.5rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            text-shadow: 0 0 10px $primary-glow;
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Floating Input Component Styles */
+.floating-input-group {
+    position: relative;
+    width: 100%;
+
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .floating-input {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid $border;
+        color: $text-primary;
+        padding: 1.25rem 1rem 0.5rem;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        height: 3.5rem;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 1px $primary, 0 0 15px $primary-glow;
+            background: rgba(0, 0, 0, 0.6);
         }
     }
 
-    p {
-        text-align: center;
-        color: var(--text-secondary);
-        font-size: 0.95rem;
+    .floating-label {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $text-secondary;
+        font-size: 1rem;
+        pointer-events: none;
+        transition: all 0.2s ease-out;
+        transform-origin: left top;
 
-        .toggleAuthForm {
-            color: var(--primary-color);
-            font-weight: 600;
-            text-decoration: none;
-            margin-left: 0.5rem;
-            transition: var(--transition);
+        &.active {
+            top: 0.5rem;
+            transform: translateY(0) scale(0.8);
+            color: $primary;
+        }
+    }
 
-            &:hover {
-                text-shadow: 0 0 10px var(--primary-glow);
-                text-decoration: underline;
+    .password-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: $text-secondary;
+        cursor: pointer;
+        padding: 0.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $text-primary;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .error-message {
+        display: block;
+        color: #ff4d4f;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    &.has-error {
+        .floating-input {
+            border-color: #ff4d4f;
+
+            &:focus {
+                box-shadow: 0 0 0 1px #ff4d4f, 0 0 15px rgba(255, 77, 79, 0.2);
             }
+        }
+
+        .floating-label.active {
+            color: #ff4d4f;
         }
     }
 }

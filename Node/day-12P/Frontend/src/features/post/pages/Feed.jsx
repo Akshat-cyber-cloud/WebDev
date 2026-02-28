@@ -2,39 +2,39 @@ import React, { useEffect } from 'react'
 import '../style/feed.scss'
 import Post from "../components/Post"
 import { usePost } from '../hook/usePost'
-import Nav from '../shared/components/Nav'
 import { useNavigate } from 'react-router'
+import { useAuth } from '../../auth/hooks/useAuth'
+import StoriesBar from '../components/StoriesBar'
 
 const Feed = () => {
   const { feed, handleGetFeed, loading, handleLike, handleUnlike } = usePost();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     handleGetFeed()
   }, []);
 
-  if (loading) {
-    return (<main><h1>Feed is Loading</h1></main>)
-  }
+  useEffect(() => {
+    // If loading is finished and there's no user, redirect to login
+    if (!loading && !user) {
+      navigate('/login')
+    }
+  }, [loading, user, navigate])
 
-  // If loading is finished and feed is completely empty (likely 401 Unauthorized), 
-  // redirect them to the login page so they can authenticate.
-  if (!feed || feed.length === 0) {
-    navigate('/login')
-    return null;
+  if (loading) {
+    return (<div className="feed-loading"><h1>Feed is Loading</h1></div>)
   }
 
   return (
-    <main className='feed-page'>
-      <Nav />
-      <div className="feed">
-        <div className="posts">
-          {feed.map(post => {
-            return <Post user={post.user} post={post} loading={loading} handleLike={handleLike} handleUnlike={handleUnlike} />
-          })}
-        </div>
+    <div className='feed-page-content'>
+      <StoriesBar />
+      <div className="feed-posts-container">
+        {feed && feed.map(post => {
+          return <Post key={post.id || post._id} user={post.user} post={post} loading={loading} handleLike={handleLike} handleUnlike={handleUnlike} />
+        })}
       </div>
-    </main>
+    </div>
   )
 }
 

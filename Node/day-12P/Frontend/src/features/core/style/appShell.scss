@@ -1,0 +1,250 @@
+/* Core Variables if not available from global style.scss */
+$primary: var(--primary-color, #d62976);
+$primary-glow: var(--primary-glow, rgba(214, 41, 118, 0.2));
+$bg: #fafafa;
+$surface: #ffffff;
+$border: #efefef;
+$text-primary: #262626;
+$text-secondary: #737373;
+
+/* --- App Shell Layout --- */
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    background-color: $bg;
+    color: $text-primary;
+}
+
+.shell-sidebar-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 50;
+    flex-shrink: 0;
+}
+
+.shell-main-content {
+    flex: 1;
+    min-width: 0;
+    /* Prevents flex items from overflowing */
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+    max-width: 935px;
+    /* Instagram-like max width */
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+        padding-bottom: 5rem;
+        /* Space for bottom nav */
+    }
+}
+
+.shell-bottom-nav-container {
+    display: none;
+    /* Hidden on desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid $border;
+}
+
+
+/* --- Sidebar Component --- */
+.app-sidebar {
+    width: 240px;
+    height: 100%;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $border;
+    background-color: $surface;
+    transition: width 0.3s ease;
+
+    .sidebar-header {
+        padding: 0 1rem;
+        margin-bottom: 2.5rem;
+
+        .app-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .sidebar-footer {
+        margin-top: auto;
+        padding-top: 1rem;
+    }
+}
+
+
+/* --- Bottom Nav Component --- */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    padding: 0 1rem;
+
+    /* Override NavItem styles for mobile layout */
+    .nav-link-wrapper {
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    .nav-item {
+        padding: 0.5rem !important;
+        flex-direction: column;
+        gap: 0.2rem !important;
+
+        .label {
+            display: none;
+            /* Hide labels on mobile to save space */
+        }
+    }
+}
+
+
+/* --- Reusable NavItem Component --- */
+
+.nav-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    color: $text-secondary;
+    transition: color 0.2s ease;
+    z-index: 1;
+    /* Keep above active pill */
+
+    &:hover {
+        color: $text-primary;
+
+        .icon-container {
+            color: $primary;
+            filter: drop-shadow(0 0 8px $primary-glow);
+            transform: translateY(-2px);
+        }
+    }
+
+    &.active {
+        color: $text-primary;
+        font-weight: 600;
+
+        .icon-container {
+            color: $text-primary;
+        }
+    }
+
+    .active-pill {
+        position: absolute;
+        inset: 0;
+        background: #f0f0f0;
+        border-radius: 12px;
+        z-index: -1;
+    }
+
+    .icon-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .label {
+        font-size: 1.05rem;
+        white-space: nowrap;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        background-color: $primary;
+        color: white;
+        font-size: 0.65rem;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 10px;
+        border: 2px solid $bg;
+        /* Creates separation from icon */
+        pointer-events: none;
+    }
+}
+
+
+/* --- Responsive Breakpoints --- */
+
+/* Medium Screens (Tablets) - Sidebar collapses to icons only */
+@media (max-width: 1024px) {
+    .app-sidebar {
+        width: 80px;
+        align-items: center;
+        padding: 2rem 0;
+
+        .sidebar-header {
+            margin-bottom: 2rem;
+
+            .app-logo {
+                display: none;
+                /* Hide full text logo */
+            }
+
+            /* Could show an icon logo here instead */
+        }
+
+        .nav-item {
+            justify-content: center;
+            width: fit-content;
+
+            .label {
+                display: none;
+            }
+        }
+    }
+}
+
+/* Small Screens (Mobile) - Sidebar hides, Bottom Nav shows */
+@media (max-width: 768px) {
+    .shell-sidebar-container {
+        display: none;
+    }
+
+    .shell-bottom-nav-container {
+        display: block;
+    }
+}
