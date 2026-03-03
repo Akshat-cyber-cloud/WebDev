@@ -56,7 +56,7 @@ async function loginUser(req,res){
     }).select("+password")
 
     if(!user || !(await bcrypt.compare(password, user.password))){
-        return res.staus(400).json({
+        return res.status(400).json({
             message: "Invalid Credentials"
         })
     }
