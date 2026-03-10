@@ -1,0 +1,10 @@
+// io => Server
+// socket => single user
+
+// on => event ko listen karta hai
+// emit => event ko fire karna 
+
+
+// socket.emit()
+// socket.broadcast().emit()
+// io.emit()
