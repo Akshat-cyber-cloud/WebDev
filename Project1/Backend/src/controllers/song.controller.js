@@ -9,7 +9,7 @@ async function uploadSong(req, res) {
 
     const tags = id3.read(songBuffer)
 
-    const [ songFile, posterFile ] = await Promise.all([
+    const [songFile, posterFile] = await Promise.all([
         storageService.uploadFile({
             buffer: songBuffer,
             filename: tags.title + ".mp3",
@@ -36,12 +36,14 @@ async function uploadSong(req, res) {
 
 }
 
-async function getSong(req,res){
-    const {mood} = req.query;
+async function getSong(req, res) {
+    const { mood } = req.query;
 
-    const song = await songModel.find({
+    const songs = await songModel.find({
         mood
     })
+
+    const song = songs.length > 0 ? songs[Math.floor(Math.random() * songs.length)] : null;
 
     res.status(200).json({
         message: "Song Fetched Successfully.",
@@ -49,5 +51,5 @@ async function getSong(req,res){
     })
 }
 
-module.exports = {uploadSong , getSong}
+module.exports = { uploadSong, getSong }
 

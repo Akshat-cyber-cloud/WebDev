@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
-
-
-
+/* Hide Unicorn Studio Watermark */
+a[href*="unicorn.studio"] {
+  display: none !important;
+}

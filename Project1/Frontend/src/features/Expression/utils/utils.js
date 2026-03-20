@@ -61,5 +61,7 @@ export const detect = ({ landmarkerRef, videoRef, setExpression }) => {
         }
 
         setExpression(currentExpression);
+
+        return currentExpression;
     }
 };

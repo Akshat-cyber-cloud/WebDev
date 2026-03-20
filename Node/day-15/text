@@ -5,6 +5,6 @@
 // emit => event ko fire karna 
 
 
-// socket.emit()
-// socket.broadcast().emit()
-// io.emit()
+// socket.emit() -> A → A
+// socket.broadcast().emit() -> A → B C D
+// io.emit() -> A → A B C D
