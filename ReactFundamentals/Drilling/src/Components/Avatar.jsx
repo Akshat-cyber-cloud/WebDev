@@ -15,7 +15,7 @@ const Avatar = ({ name, isPremium, avatarUrl }) => {
                     width: '80px',
                     height: '80px',
                     borderRadius: '50%',
-                    border: isPremium ? '3px solid gold' : '3px solid transparent'
+                    border: isPremium ? '3px solid gold' : '3px solid red'
                 }}
             />
 
