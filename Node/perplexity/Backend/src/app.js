@@ -29,11 +29,11 @@ app.use(express.static(path.join(__dirname, '../../Frontend/dist')));
 app.use("/api/auth", authRouter);
 app.use("/api/chats", chatRouter)
 
-// SPA support: send index.html for any non-API route
-app.get('*', (req, res) => {
+app.use((req, res) => {
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ message: "API route not found" });
     }
+
     const indexPath = path.join(__dirname, '../../Frontend/dist/index.html');
     res.sendFile(indexPath);
 });
