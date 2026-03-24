@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router";
 import { useSelector } from "react-redux";
+import { useAuth } from "../hook/useAuth";
 import "../../chat/styles/home.css";
 
 const Register = () => {
     const user = useSelector(state => state.auth.user);
     const loading = useSelector(state => state.auth.loading);
     const navigate = useNavigate();
+    const { handleRegister } = useAuth();
 
     const [formData, setFormData] = useState({ name: "", email: "", password: "", confirm: "" });
     const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +20,7 @@ const Register = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.name || !formData.email || !formData.password || !formData.confirm) {
             setMessage("Please fill in all fields.");
@@ -32,8 +34,23 @@ const Register = () => {
             setMessage("Password must be at least 6 characters.");
             return;
         }
-        setMessage(`Account created for ${formData.email}! ✓`);
-        setFormData({ name: "", email: "", password: "", confirm: "" });
+        
+        try {
+            await handleRegister({ 
+                email: formData.email, 
+                username: formData.name, 
+                password: formData.password 
+            });
+            setMessage(`Account created! Please sign in. ✓`);
+            setFormData({ name: "", email: "", password: "", confirm: "" });
+            
+            // Redirect to Login page as requested by user
+            setTimeout(() => {
+                navigate("/login");
+            }, 1500);
+        } catch (error) {
+            setMessage(error.response?.data?.message || error.message || "Registration failed");
+        }
     };
 
     if (!loading && user) {

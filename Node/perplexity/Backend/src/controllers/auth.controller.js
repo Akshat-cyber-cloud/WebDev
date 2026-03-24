@@ -18,23 +18,38 @@ export async function register(req, res) {
         })
     }
 
-    const user = await userModel.create({ username, email, password });
+    // Set verified: true by default to ensure the user can log in even if email fails in production
+    const user = await userModel.create({ username, email, password, verified: true });
 
     const emailVerificationToken = jwt.sign({
         email: user.email,
     }, process.env.JWT_SECRET);
 
-    await sendEmail({
-        to: email,
-        subject: "Welcome to Perplexity!",
-        html: `
-                <p>Hi ${username},</p>
-                <p>Thank you for registering at <strong>Perplexity</strong>. We're excited to have you on board!</p>
-                <p>Please verify your email address by clicking the link below:</p>
-                <a href="http://localhost:3000/api/auth/verify-email?token=${emailVerificationToken}">Verify Email</a> 
-                <p>Best regards,<br>The Perplexity Team</p>
-        `
-    })
+    const origin = `${req.protocol}://${req.get('host')}`;
+
+    try {
+        await sendEmail({
+            to: email,
+            subject: "Welcome to Ember AI!",
+            html: `
+                    <p>Hi ${username},</p>
+                    <p>Your Ember AI account has been established. We're excited to have you on board!</p>
+                    <p>Please verify your email address by clicking the link below:</p>
+                    <a href="${origin}/api/auth/verify-email?token=${emailVerificationToken}">Verify Email</a> 
+                    <p>Best regards,<br>The Ember AI Team</p>
+            `
+        });
+    } catch (emailError) {
+        console.error("Email send failed during registration:", emailError.message);
+        // We continue because we already created the user and set verified: true
+    }
+
+    const token = jwt.sign({
+        id: user._id,
+        username: user.username,
+    }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+    res.cookie("token", token);
 
     res.status(201).json({
         message: "User registered successfully",
@@ -136,11 +151,12 @@ export async function verifyEmail(req, res) {
         user.verified = true;
         await user.save();
 
+        const origin = `${req.protocol}://${req.get('host')}`;
         const html =
             `
             <h1>Email Verified Successfully!</h1>
             <p>Your email has been verified. You can now log in to your account.</p>
-            <a href="http://localhost:3000/login">Go to Login</a>
+            <a href="${origin}/login">Go to Login</a>
         `
 
         return res.send(html);
