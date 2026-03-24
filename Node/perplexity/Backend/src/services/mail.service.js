@@ -1,41 +1,59 @@
-import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    type: 'OAuth2',
-    user: process.env.GOOGLE_USER,
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-  },
-  connectionTimeout: 20000,
-  greetingTimeout: 20000,
-  socketTimeout: 30000,
+/**
+ * GMAIL REST API IMPLEMENTATION
+ * This bypasses Render's SMTP blocks by using HTTPS (Port 443).
+ * It reuses your existing GOOGLE_CLIENT_ID, SECRET, and REFRESH_TOKEN.
+ */
+
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground"
+);
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.GOOGLE_REFRESH_TOKEN
 });
 
-transporter.verify((error) => {
-  if (error) {
-    console.error('Error connecting to email server:', error);
-  } else {
-    console.log('Email server is ready to send messages');
-  }
-});
+const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+
+console.log("Mail System: Gmail REST API initialized (HTTPS Mode)");
 
 export async function sendEmail({ to, subject, html, text = '' }) {
-  try {
-    const info = await transporter.sendMail({
-      from: process.env.GOOGLE_USER,
-      to,
-      subject,
-      html,
-      text,
-    });
+    try {
+        // Encode subject to handle special characters
+        const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
+        
+        const messageParts = [
+            `From: Ember AI <${process.env.GOOGLE_USER}>`,
+            `To: ${to}`,
+            'Content-Type: text/html; charset=utf-8',
+            'MIME-Version: 1.0',
+            `Subject: ${utf8Subject}`,
+            '',
+            html || text,
+        ];
+        const message = messageParts.join('\n');
 
-    console.log('Email sent:', info.messageId);
-    return `Email sent successfully to ${to}`;
-  } catch (error) {
-    console.error('Email send failed:', error);
-    return `Failed to send email to ${to}. Error: ${error.message}`;
-  }
+        // Gmail API requires base64url encoding of the raw message
+        const encodedMessage = Buffer.from(message)
+            .toString('base64')
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_')
+            .replace(/=+$/, '');
+
+        const res = await gmail.users.messages.send({
+            userId: 'me',
+            requestBody: {
+                raw: encodedMessage,
+            },
+        });
+
+        console.log('Email sent via REST API. ID:', res.data.id);
+        return `Email sent successfully to ${to}`;
+    } catch (error) {
+        console.error('Gmail REST API Error:', error.message);
+        return `Failed to send email to ${to}. Error: ${error.message}. Please verify your GOOGLE_ credentials in Render.`;
+    }
 }
