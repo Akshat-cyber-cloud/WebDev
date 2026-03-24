@@ -1,4 +1,4 @@
-import { generateResponse, generateChatTitle } from "../services/ai.service.js";
+import { generateResponse, generateChatTitle, generateResponseStream } from "../services/ai.service.js";
 import chatModel from "../models/chat.model.js"
 import messageModel from "../models/message.model.js"
 
@@ -20,21 +20,35 @@ export async function sendMessage(req, res) {
         role: "user"
     })
 
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    res.write(`data: ${JSON.stringify({
+        type: "chat_info",
+        chatId: chatId || chat._id,
+        title: title || (await chatModel.findById(chatId))?.title
+    })}\n\n`);
+
+
     const messages = await messageModel.find({chat: chatId || chat._id});
-    const result = await generateResponse(messages);
+    const stream = generateResponseStream(messages);
+
+    let fullContent = "";
+    for await (const chunk of stream) {
+        fullContent += chunk;
+        res.write(`data: ${JSON.stringify({ type: "chunk", content: chunk })}\n\n`);
+    }
 
 
     const aiMessage = await messageModel.create({
         chat: chatId || chat._id,
-        content: result,
+        content: fullContent,
         role: "ai"
     })
 
-    res.status(201).json({
-        title: title || (await chatModel.findById(chatId))?.title,
-        chat: chat || { _id: chatId },
-        aiMessage
-    })
+    res.write(`data: ${JSON.stringify({ type: "done", aiMessage })}\n\n`);
+    res.end();
 }
 
 export async function getChats(req,res){

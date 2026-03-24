@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { register, login, getMe } from "../service/auth.api";
+import { register, login, getMe, logout } from "../service/auth.api";
 import { setUser, setLoading, setError } from "../auth.slice";
 //  HOOK LAYER
 
@@ -46,10 +46,20 @@ export function useAuth() {
         }
     }
 
+    async function handleLogout() {
+        try {
+            await logout();
+            dispatch(setUser(null));
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    }
+
     return {
         handleGetMe,
         handleLogin,
-        handleRegister
+        handleRegister,
+        handleLogout
     }
     
 }

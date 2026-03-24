@@ -1,6 +1,6 @@
 import { initializeSocketConnection } from "../service/chat.socket";
 import { sendMessage, getChats, getMessages, deleteChat } from "../service/chat.api";
-import { addNewMessage, setChats, setCurrentChatId, setError, setLoading, createNewChat, setChatMessages } from "../chat.slice";
+import { addNewMessage, setChats, setCurrentChatId, setError, setLoading, createNewChat, setChatMessages, updateLastAiMessage, deleteChatAction } from "../chat.slice";
 import { useDispatch } from "react-redux";
 
 
@@ -11,36 +11,43 @@ export const useChat = () => {
     async function handleSendMessage({ message, chatId }) {
         dispatch(setLoading(true));
         try {
-            const data = await sendMessage({ message, chatId });
-            const { chat, aiMessage } = data;
+            const stream = sendMessage({ message, chatId });
+            let workingChatId = chatId;
+            let aiMessageAdded = false;
 
-            if (!chatId) {
-                dispatch(createNewChat({
-                    chatId: chat._id,
-                    title: chat.title
-                }));
-                dispatch(addNewMessage({
-                    chatId: chat._id,
-                    content: message,
-                    role: "user",
-                }));
-                dispatch(setCurrentChatId(chat._id));
-            } else {
-                dispatch(addNewMessage({
-                    chatId: chat._id,
-                    content: message,
-                    role: "user",
-                }));
+            for await (const data of stream) {
+                if (data.type === "chat_info") {
+                    if (!chatId) {
+                        dispatch(createNewChat({
+                            chatId: data.chatId,
+                            title: data.title
+                        }));
+                        dispatch(setCurrentChatId(data.chatId));
+                    }
+                    workingChatId = data.chatId;
+                    dispatch(addNewMessage({
+                        chatId: workingChatId,
+                        content: message,
+                        role: "user",
+                    }));
+                    dispatch(setLoading(false));
+                } else if (data.type === "chunk") {
+                    if (!aiMessageAdded) {
+                        dispatch(addNewMessage({
+                            chatId: workingChatId,
+                            content: "",
+                            role: "ai",
+                        }));
+                        aiMessageAdded = true;
+                    }
+                    dispatch(updateLastAiMessage({
+                        chatId: workingChatId,
+                        content: data.content
+                    }));
+                }
             }
-
-            dispatch(addNewMessage({
-                chatId: chat._id,
-                content: aiMessage.content,
-                role: "ai",
-            }));
         } catch (e) {
             dispatch(setError(e.message));
-        } finally {
             dispatch(setLoading(false));
         }
     }
@@ -48,7 +55,8 @@ export const useChat = () => {
     async function handleGetChats() {
         dispatch(setLoading(true));
         try {
-            const chatsData = await getChats();
+            const data = await getChats();
+            const chatsData = data.chats || [];
             const chatsMap = {};
             chatsData.forEach(c => {
                 chatsMap[c._id] = {
@@ -71,8 +79,21 @@ export const useChat = () => {
 
         dispatch(setLoading(true));
         try {
-            const messages = await getMessages({ chatId });
+            const data = await getMessages({ chatId });
+            const messages = data.messages || [];
             dispatch(setChatMessages({ chatId, messages }));
+        } catch (e) {
+            dispatch(setError(e.message));
+        } finally {
+            dispatch(setLoading(false));
+        }
+    }
+
+    async function handleDeleteChat(chatId) {
+        dispatch(setLoading(true));
+        try {
+            await deleteChat({ chatId });
+            dispatch(deleteChatAction(chatId));
         } catch (e) {
             dispatch(setError(e.message));
         } finally {
@@ -90,5 +111,6 @@ export const useChat = () => {
         handleGetChats,
         handleOpenChat,
         handleSetCurrentChatId,
+        handleDeleteChat
     }
 }

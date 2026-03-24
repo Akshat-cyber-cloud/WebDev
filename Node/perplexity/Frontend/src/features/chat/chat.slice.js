@@ -24,6 +24,16 @@ const chatSlice = createSlice({
             const {chatId, content, role} = action.payload
             state.chats[chatId].messages.push({content, role})
         },
+        updateLastAiMessage: (state, action) => {
+            const { chatId, content } = action.payload;
+            const messages = state.chats[chatId]?.messages;
+            if (messages && messages.length > 0) {
+                const lastMessage = messages[messages.length - 1];
+                if (lastMessage.role === "ai") {
+                    lastMessage.content += content;
+                }
+            }
+        },
         setChatMessages: (state, action) => {
             const { chatId, messages } = action.payload;
             if (state.chats[chatId]) {
@@ -42,9 +52,16 @@ const chatSlice = createSlice({
         },
         setError: (state,action) => {
             state.error = action.payload;
+        },
+        deleteChatAction: (state, action) => {
+            const chatId = action.payload;
+            delete state.chats[chatId];
+            if (state.currentChatId === chatId) {
+                state.currentChatId = null;
+            }
         }
     }
 })
 
-export const {setChats , setCurrentChatId, setLoading, setError, createNewChat, addNewMessage, setChatMessages} = chatSlice.actions;
+export const {setChats , setCurrentChatId, setLoading, setError, createNewChat, addNewMessage, setChatMessages, updateLastAiMessage, deleteChatAction} = chatSlice.actions;
 export default chatSlice.reducer
