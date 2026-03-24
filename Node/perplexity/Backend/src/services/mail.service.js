@@ -1,29 +1,41 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.GOOGLE_USER,
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+  },
+  connectionTimeout: 20000,
+  greetingTimeout: 20000,
+  socketTimeout: 30000,
+});
 
-// Log status on start
-console.log("Mail System: Resend API initialized (Key status:", process.env.RESEND_API_KEY ? "Present" : "MISSING", ")");
+transporter.verify((error) => {
+  if (error) {
+    console.error('Error connecting to email server:', error);
+  } else {
+    console.log('Email server is ready to send messages');
+  }
+});
 
-export async function sendEmail({to, subject, html, text = ""}) {
-    try {
-        const { data, error } = await resend.emails.send({
-            from: 'Ember AI <onboarding@resend.dev>', // Default testing sender
-            to,
-            subject,
-            html,
-            text: text || undefined // Only include if present
-        });
+export async function sendEmail({ to, subject, html, text = '' }) {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.GOOGLE_USER,
+      to,
+      subject,
+      html,
+      text,
+    });
 
-        if (error) {
-            console.error("Resend send failed:", error.message);
-            throw error;
-        }
-
-        console.log("Email Sent Success (Resend ID):", data.id);
-        return `Email Sent Successfully to ${to}`;
-    } catch (error) {
-        console.error("sendEmail tool failed:", error.message);
-        return `Failed to send email to ${to}. Error: ${error.message}. Please verify that RESEND_API_KEY is correctly set in Render environment variables.`;
-    }
+    console.log('Email sent:', info.messageId);
+    return `Email sent successfully to ${to}`;
+  } catch (error) {
+    console.error('Email send failed:', error);
+    return `Failed to send email to ${to}. Error: ${error.message}`;
+  }
 }
