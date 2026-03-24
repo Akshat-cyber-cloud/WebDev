@@ -125,22 +125,6 @@ export default function Home() {
                     </div>
                 </div>
             </main>
-
-            {/* Footer */}
-            <footer className="w-full py-12 border-t border-[#1C1B1B] bg-[#0E0E0E]">
-                <div className="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto space-y-6 md:space-y-0">
-                    <div className="text-lg font-bold text-[#FFB5A0]">EMBER</div>
-                    <div className="flex space-x-8 text-[10px] uppercase tracking-[0.2em] text-[#E5E2E1]/40 transition-all font-body">
-                        <a className="hover:text-[#FFB5A0] transition-colors duration-300" href="#">Privacy</a>
-                        <a className="hover:text-[#FFB5A0] transition-colors duration-300" href="#">Terms</a>
-                        <a className="hover:text-[#FFB5A0] transition-colors duration-300" href="#">Twitter</a>
-                        <a className="hover:text-[#FFB5A0] transition-colors duration-300" href="#">Discord</a>
-                    </div>
-                    <div className="text-[10px] uppercase tracking-[0.2em] text-[#E5E2E1]/40 font-body">
-                        © 2024 EMBER KINETIC. ALL RIGHTS RESERVED.
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 }
