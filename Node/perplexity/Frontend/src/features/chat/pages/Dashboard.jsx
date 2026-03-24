@@ -4,13 +4,13 @@ import { useChat } from "../hooks/useChat";
 import { useAuth } from "../../auth/hook/useAuth";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { 
-  Plus, 
-  Send,
-  LogOut,
-  Trash2,
-  Bell,
-  User as UserIcon
+import {
+    Plus,
+    Send,
+    LogOut,
+    Trash2,
+    Bell,
+    User as UserIcon
 } from "lucide-react";
 import "../styles/dashboard.css";
 
@@ -55,14 +55,14 @@ export default function Dashboard() {
                 </div>
 
                 <nav className="flex-1 space-y-2 overflow-y-auto no-scrollbar">
-                    <button 
+                    <button
                         onClick={() => chat.handleSetCurrentChatId(null)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${!currentChatId ? 'text-[#FFB5A0] bg-[#2A2A2A] font-bold' : 'text-[#E5E2E1]/60 hover:text-[#E5E2E1] hover:bg-[#2A2A2A]'}`}
                     >
                         <span className="material-symbols-outlined">search</span>
                         <span className="text-sm font-medium">Search</span>
                     </button>
-                    
+
                     <div className="pt-6 pb-2 px-4 text-[10px] uppercase tracking-[0.2em] text-[#E5E2E1]/30 font-bold">Recent Evolution</div>
                     <div className="space-y-1">
                         {Object.values(chats).map((c) => (
@@ -87,7 +87,7 @@ export default function Dashboard() {
                 </nav>
 
                 <div className="mt-auto pt-6 space-y-1 border-t border-[#5B4039]/10">
-                    <button 
+                    <button
                         onClick={handleLogout}
                         className="w-full flex items-center gap-3 px-4 py-3 text-[#E5E2E1]/60 font-medium hover:text-[#FFB5A0] hover:bg-[#2A2A2A] rounded-xl transition-all duration-200"
                     >
@@ -135,10 +135,10 @@ export default function Dashboard() {
                                         <h3 className="text-2xl font-bold mb-6">Neural Engine v4.2 Active</h3>
                                         <div className="flex flex-col md:flex-row gap-6">
                                             <div className="h-32 md:w-1/3 rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-                                                <img 
-                                                    alt="Abstract data waves" 
-                                                    className="w-full h-full object-cover" 
-                                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDQQvFvWbt-3N8WE1C64IPVk1RV8oZwi36-2wCZCMSSkIIAk9lU-JfdE8OO8yItlL5orbBOtfdOlbfg60V1afKMj00CXIE9pTBV5tXY-TM1kmvIYpNWFy4rfWuT3r-iDl4FWiOB2tJRG0SCIzwtXXGKGyUvpGx-b-AibDlXEV9jqxjRxezrceHiYM1T1nt-raulfvFMHaQ908wAmSirc-3RofHl3qvdQUqEEv4o073J5bEGbfqeVPxeTPst-XdrXPjjCFQV9xrbG5m" 
+                                                <img
+                                                    alt="Abstract data waves"
+                                                    className="w-full h-full object-cover"
+                                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDQQvFvWbt-3N8WE1C64IPVk1RV8oZwi36-2wCZCMSSkIIAk9lU-JfdE8OO8yItlL5orbBOtfdOlbfg60V1afKMj00CXIE9pTBV5tXY-TM1kmvIYpNWFy4rfWuT3r-iDl4FWiOB2tJRG0SCIzwtXXGKGyUvpGx-b-AibDlXEV9jqxjRxezrceHiYM1T1nt-raulfvFMHaQ908wAmSirc-3RofHl3qvdQUqEEv4o073J5bEGbfqeVPxeTPst-XdrXPjjCFQV9xrbG5m"
                                                 />
                                             </div>
                                             <div className="flex-1">
@@ -170,7 +170,7 @@ export default function Dashboard() {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="md:col-span-12 glass-card rounded-2xl p-6 flex items-center justify-between border-l-4 border-[#FFB5A0]">
                                         <div className="flex items-center gap-8">
                                             <div className="flex items-center gap-3">
@@ -245,15 +245,19 @@ export default function Dashboard() {
                                     </div>
                                 ))}
                                 {isLoading && (
-                                    <div className="flex gap-6 animate-pulse">
-                                        <div className="h-8 w-8 rounded-lg ember-gradient flex items-center justify-center text-[#3b0900] shadow-[0_0_15px_rgba(255,87,34,0.3)] opacity-50">
-                                            <span className="material-symbols-outlined text-[18px] font-bold">bolt</span>
+                                    <div className="flex gap-6 animate-in fade-in duration-700">
+                                        <div className="h-8 w-8 rounded-lg ember-gradient flex items-center justify-center text-[#3b0900] shadow-[0_0_15px_rgba(255,87,34,0.3)]">
+                                            <span className="material-symbols-outlined text-[18px] font-bold animate-pulse">bolt</span>
                                         </div>
-                                        <div className="flex-1 space-y-4">
-                                            <div className="h-2 w-24 bg-[#2A2A2A] rounded"></div>
-                                            <div className="space-y-2">
-                                                <div className="h-3 w-full bg-[#2A2A2A] rounded"></div>
-                                                <div className="h-3 w-4/5 bg-[#2A2A2A] rounded"></div>
+                                        <div className="flex-1 space-y-4 pt-1">
+                                            <div className="flex items-center gap-2">
+                                                <div className="h-2 w-24 bg-[#FFB5A0]/10 rounded-full skeleton-shimmer"></div>
+                                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFB5A0] animate-pulse">Thinking...</span>
+                                            </div>
+                                            <div className="space-y-3">
+                                                <div className="h-3 w-[90%] bg-[#2A2A2A] rounded-md skeleton-shimmer"></div>
+                                                <div className="h-3 w-[75%] bg-[#2A2A2A] rounded-md skeleton-shimmer"></div>
+                                                <div className="h-3 w-[85%] bg-[#2A2A2A] rounded-md skeleton-shimmer"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -265,7 +269,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Bottom-Docked Command Bar */}
-                <footer className="w-full pb-12 px-8 flex justify-center sticky bottom-0 z-40">
+                <footer className="w-full pb-4 px-8 flex justify-center sticky bottom-0 z-40">
                     <div className="w-full max-w-3xl">
                         <form className="glass-card rounded-2xl p-2.5 flex items-center gap-2 shadow-2xl border border-[#5B4039]/30 focus-within:border-[#FFB5A0]/40 transition-all" onSubmit={handleSubmit}>
                             <button type="button" className="p-2.5 hover:bg-[#2A2A2A] rounded-xl text-[#e5e2e1]/40 hover:text-[#FFB5A0] transition-all">
@@ -283,8 +287,8 @@ export default function Dashboard() {
                                 <button type="button" className="p-2.5 hover:bg-[#2A2A2A] rounded-xl text-[#e5e2e1]/40 hover:text-[#FFB5A0] transition-all">
                                     <span className="material-symbols-outlined">mic</span>
                                 </button>
-                                <button 
-                                    type="submit" 
+                                <button
+                                    type="submit"
                                     disabled={!input.trim() || isLoading}
                                     className="ember-gradient ember-glow h-12 w-12 flex items-center justify-center rounded-xl text-[#3b0900] disabled:opacity-30 disabled:grayscale hover:scale-105 active:scale-95 transition-all duration-200"
                                 >
@@ -292,11 +296,11 @@ export default function Dashboard() {
                                 </button>
                             </div>
                         </form>
-                        
+
                         {messages.length === 0 && (
                             <div className="flex justify-center gap-3 mt-4 animate-in slide-in-from-bottom-2 duration-700 delay-300">
                                 {["Synthesize Trends", "Ember Report", "Market Analysis"].map(chip => (
-                                    <button 
+                                    <button
                                         key={chip}
                                         onClick={() => setInput(chip)}
                                         className="px-4 py-1.5 rounded-full border border-[#5B4039]/20 bg-[#131313]/60 text-[10px] uppercase tracking-widest font-bold text-[#e5e2e1]/40 hover:border-[#FFB5A0]/50 hover:text-[#FFB5A0] transition-all"
@@ -308,7 +312,7 @@ export default function Dashboard() {
                         )}
                     </div>
                 </footer>
-                
+
                 {/* Decorative Elements */}
                 <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#FFB5A0]/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#FF5722]/5 blur-[120px] rounded-full pointer-events-none"></div>

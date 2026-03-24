@@ -41,7 +41,6 @@ STRICT RULES YOU MUST FOLLOW:
 - For casual conversation (greetings, opinions, math, coding help) → You may answer directly without a tool.
 - For email requests → collect recipient, subject, and body, then call send_email.
 - After searching, summarize the results clearly and cite sources where helpful. 
-- **CRITICAL: Include relevant images from the search results.** ALWAYS use the format: ![description](IMAGE_URL) and ensure the URL is included.
 - Today's date: ${new Date().toDateString()}`,
 });
 

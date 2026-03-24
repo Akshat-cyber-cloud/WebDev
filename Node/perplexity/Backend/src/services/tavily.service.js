@@ -13,23 +13,21 @@ export const tavilyTool = tool(
         maxResults: 5,
         searchDepth: "advanced",
         includeAnswer: true,
-        includeImages: true,
+        includeImages: false,
       });
 
-      const directAnswer = res.answer ? `Direct Answer: ${res.answer}\n\n` : "";
-
-      const sources = res.results
-        .map((r, i) => `[${i + 1}] ${r.title}\nURL: ${r.url}\n${r.content}`)
-        .join("\n\n");
-
-      const images = res.images && res.images.length > 0
-        ? "\n\nRelevant Images:\n" + res.images.map((url, i) => `![Image ${i + 1}](${url})`).join("\n")
-        : "";
-
-      return directAnswer + sources + images;
+      return JSON.stringify({
+        answer: res.answer || null,
+        sources: res.results.map((r, i) => ({
+          index: i + 1,
+          title: r.title,
+          url: r.url,
+          content: r.content,
+        })),
+      });
     } catch (err) {
       console.error("Tavily error:", err);
-      return "Error fetching real-time data. Please try again.";
+      return JSON.stringify({ error: "Error fetching real-time data. Please try again." });
     }
   },
   {

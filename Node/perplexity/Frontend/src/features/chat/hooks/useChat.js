@@ -30,7 +30,6 @@ export const useChat = () => {
                         content: message,
                         role: "user",
                     }));
-                    dispatch(setLoading(false));
                 } else if (data.type === "chunk") {
                     if (!aiMessageAdded) {
                         dispatch(addNewMessage({
@@ -48,6 +47,7 @@ export const useChat = () => {
             }
         } catch (e) {
             dispatch(setError(e.message));
+        } finally {
             dispatch(setLoading(false));
         }
     }
