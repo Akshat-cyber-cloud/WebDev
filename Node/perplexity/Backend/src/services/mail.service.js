@@ -1,43 +1,29 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-// Simplified transporter to ensure the app boots quickly on Render.
-// Port 465 + secure: true is the most stable setting for SMTPS.
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',  
-    port: 465,             
-    secure: true,
-    auth: {
-        type: 'OAuth2',
-        user: process.env.GOOGLE_USER,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-        clientId: process.env.GOOGLE_CLIENT_ID
-    },
-    connectionTimeout: 5000, // Wait max 5s for connection
-    greetingTimeout: 5000,   // Wait max 5s for greeting
-})
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Log variable presence on start (Safe log)
-console.log("Mail System: GOOGLE_USER status =", process.env.GOOGLE_USER ? "Configured" : "NOT CONFIGURED");
+// Log status on start
+console.log("Mail System: Resend API initialized (Key status:", process.env.RESEND_API_KEY ? "Present" : "MISSING", ")");
 
-export async function sendEmail({to,subject,html,text = ""}){
-    const mailOptions = {
-        from: process.env.GOOGLE_USER,
-        to,
-        subject,
-        html,
-        text
-    }
-
+export async function sendEmail({to, subject, html, text = ""}) {
     try {
-        // Try to verify connection ONLY when sending
-        await transporter.verify();
-        
-        const details = await transporter.sendMail(mailOptions);
-        console.log("Email Sent Success: ", details.messageId);
+        const { data, error } = await resend.emails.send({
+            from: 'Ember AI <onboarding@resend.dev>', // Default testing sender
+            to,
+            subject,
+            html,
+            text: text || undefined // Only include if present
+        });
+
+        if (error) {
+            console.error("Resend send failed:", error.message);
+            throw error;
+        }
+
+        console.log("Email Sent Success (Resend ID):", data.id);
         return `Email Sent Successfully to ${to}`;
     } catch (error) {
         console.error("sendEmail tool failed:", error.message);
-        return `Failed to send email to ${to}. Error: ${error.message}. Please check Render environment variables.`;
+        return `Failed to send email to ${to}. Error: ${error.message}. Please verify that RESEND_API_KEY is correctly set in Render environment variables.`;
     }
 }
