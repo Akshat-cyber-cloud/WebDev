@@ -28,7 +28,12 @@ export async function sendEmail({to,subject,html,text = ""}){
         text
     }
 
-    const details = await transporter.sendMail(mailOptions);
-    console.log("Email Sent: ", details);
-    return "Email Sent Successfully, to" + to;
+    try {
+        const details = await transporter.sendMail(mailOptions);
+        console.log("Email Sent: ", details);
+        return `Email Sent Successfully to ${to}`;
+    } catch (error) {
+        console.error("sendEmail tool failed:", error.message);
+        return `Failed to send email to ${to}. Error: ${error.message}. Please verify that GOOGLE_USER, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and GOOGLE_REFRESH_TOKEN are correctly set in Render environment variables.`;
+    }
 }

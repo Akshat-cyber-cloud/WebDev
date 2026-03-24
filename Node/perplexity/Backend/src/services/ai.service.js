@@ -49,47 +49,64 @@ export async function generateResponse(messages) {
   const formattedMessages = messages.map((msg) => {
     if (msg.role === "user") {
       return new HumanMessage(msg.content);
-    } else if (msg.role === "ai") {
+    } else if (msg.role === "ai" || msg.role === "assistant") {
       return new AIMessage(msg.content);
     }
+    return null;
   }).filter(Boolean);
 
-  const response = await agent.invoke({ messages: formattedMessages });
+  console.log("AI Agent invoked (non-stream) with history length:", formattedMessages.length);
 
-  const lastMessage = response.messages.at(-1);
-  const output = typeof lastMessage.content === "string"
-    ? lastMessage.content
-    : lastMessage.content
-      .filter((c) => c.type === "text")
-      .map((c) => c.text)
-      .join("");
+  try {
+    const response = await agent.invoke({ messages: formattedMessages });
 
-  return output;
+    const lastMessage = response.messages.at(-1);
+    const output = typeof lastMessage.content === "string"
+      ? lastMessage.content
+      : lastMessage.content
+        .filter((c) => c.type === "text")
+        .map((c) => c.text)
+        .join("");
+
+    return output;
+  } catch (error) {
+    console.error("AI Generation Error:", error);
+    return "I encountered an error processing your request. Please check the server settings.";
+  }
 }
 
 export async function* generateResponseStream(messages) {
   const formattedMessages = messages.map((msg) => {
     if (msg.role === "user") {
       return new HumanMessage(msg.content);
-    } else if (msg.role === "ai") {
+    } else if (msg.role === "ai" || msg.role === "assistant") {
       return new AIMessage(msg.content);
     }
+    return null;
   }).filter(Boolean);
 
-  const stream = await agent.stream({ messages: formattedMessages }, { streamMode: "messages" });
+  console.log("AI Agent invoked with history length:", formattedMessages.length);
 
-  for await (const [chunk, metadata] of stream) {
-    if (metadata.langgraph_node === "agent" && chunk.content) {
-      if (typeof chunk.content === "string") {
-        yield chunk.content;
-      } else {
-        const text = chunk.content
-          .filter((c) => c.type === "text")
-          .map((c) => c.text)
-          .join("");
-        yield text;
+  try {
+    const stream = await agent.stream({ messages: formattedMessages }, { streamMode: "messages" });
+
+    for await (const [chunk, metadata] of stream) {
+      if (metadata.langgraph_node === "agent") {
+        const content = typeof chunk.content === "string" ? chunk.content : "";
+        if (content) {
+          yield content;
+        }
+        
+        if (chunk.tool_calls && chunk.tool_calls.length > 0) {
+          console.log("AI Agent calling tools:", chunk.tool_calls.map(tc => tc.name).join(", "));
+          // No need to yield anything for a tool call usually, 
+          // but we can yield a small "thinking" indicator if desired.
+        }
       }
     }
+  } catch (error) {
+    console.error("AI Streaming Error:", error);
+    yield "I encountered an error while processing your request. Please check the server logs.";
   }
 }
 
