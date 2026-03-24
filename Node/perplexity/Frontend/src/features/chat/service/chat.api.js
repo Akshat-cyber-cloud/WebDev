@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "/api",
     withCredentials: true,
 })
 
 export const sendMessage = async function* ({message, chatId}) {
-    const response = await fetch("http://localhost:3000/api/chats/message", {
+    const response = await fetch("/api/chats/message", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
