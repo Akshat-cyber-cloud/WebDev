@@ -49,7 +49,7 @@ export async function register(req, res) {
         username: user.username,
     }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-    res.cookie("token", token);
+    // Removed res.cookie(token) to prevent auto-login as per user request
 
     res.status(201).json({
         message: "User registered successfully",
