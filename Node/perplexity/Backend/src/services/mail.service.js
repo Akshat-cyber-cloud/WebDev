@@ -2,8 +2,10 @@ import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',  
-    port: 587,             
-    secure: false,
+    port: 465,             
+    secure: true,
+    debug: true,
+    logger: true,
     auth: {
         type: 'OAuth2',
         user: process.env.GOOGLE_USER,
@@ -13,11 +15,13 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+console.log("Mail Config: GOOGLE_USER is", process.env.GOOGLE_USER ? "defined" : "MISSING");
+
 transporter.verify((error) => {
   if (error) {
-    console.error('Error connecting to email server:', error);
+    console.error('SMTP Connection Failed:', error.message);
   } else {
-    console.log('Email server is ready to send messages');
+    console.log('SMTP Connection Success: Ready to send messages');
   }
 });
 
