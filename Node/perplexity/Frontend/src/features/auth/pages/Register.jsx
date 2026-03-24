@@ -36,20 +36,23 @@ const Register = () => {
         }
         
         try {
-            await handleRegister({ 
+            const data = await handleRegister({ 
                 email: formData.email, 
                 username: formData.name, 
                 password: formData.password 
             });
-            setMessage(`Account created! Please sign in. ✓`);
+            setMessage(`Account created! Taking you to Login... ✓`);
             setFormData({ name: "", email: "", password: "", confirm: "" });
             
             // Redirect to Login page as requested by user
-            setTimeout(() => {
-                navigate("/login");
-            }, 1500);
+            setTimeout(() => navigate("/login"), 1000);
         } catch (error) {
-            setMessage(error.response?.data?.message || error.message || "Registration failed");
+            const errorMessage = error.response?.data?.message || error.message || "Registration failed";
+            setMessage(errorMessage);
+            
+            if (errorMessage.toLowerCase().includes("exists")) {
+                setTimeout(() => navigate("/login"), 1500);
+            }
         }
     };
 

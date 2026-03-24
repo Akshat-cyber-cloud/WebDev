@@ -39,7 +39,8 @@ export function useAuth() {
             const data = await getMe()
             dispatch(setUser(data.user))
         }catch(error){
-            dispatch(setError(error.response?.data?.message || "Failed to Fetch User"))
+            // Silence 401 errors for session check as they are normal for visitors
+            console.log("No active session found (normal for visitors)");
         }finally{
             dispatch(setLoading(false));
         }
