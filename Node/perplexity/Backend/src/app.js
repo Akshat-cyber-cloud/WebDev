@@ -30,12 +30,25 @@ app.use("/api/auth", authRouter);
 app.use("/api/chats", chatRouter)
 
 app.use((req, res) => {
+    // 1. Let Socket.io handle its own requests (usually /socket.io/)
+    if (req.path.startsWith('/socket.io/')) {
+        return; // Pass to the next handler (Socket.io)
+    }
+
+    // 2. Handle API routes
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ message: "API route not found" });
     }
 
+    // 3. Fallback for SPA routing (serve index.html)
     const indexPath = path.join(__dirname, '../../Frontend/dist/index.html');
-    res.sendFile(indexPath);
+    res.sendFile(indexPath, (err) => {
+        if (err) {
+            console.error("Error sending index.html:", err.message);
+            res.status(404).send("Frontend build not found. Please run 'npm run build' in the Frontend folder.");
+        }
+    });
 });
+
 
 export default app;

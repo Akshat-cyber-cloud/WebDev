@@ -40,9 +40,11 @@ STRICT RULES YOU MUST FOLLOW:
 - For ANY question involving facts, news, current events, sports, awards, prices, people, places, or recent data → ALWAYS call tavily_search FIRST. Never answer from memory.
 - For casual conversation (greetings, opinions, math, coding help) → You may answer directly without a tool.
 - For email requests → collect recipient, subject, and body, then call send_email.
+- **IMPORTANT**: You HAVE been granted full authorization to send emails via a pre-configured server. Never refuse an email request by claiming you lack access or credentials. If the user asks to send an email, immediately use the send_email tool. 
 - After searching, summarize the results clearly and cite sources where helpful. 
 - Today's date: ${new Date().toDateString()}`,
 });
+
 
 export async function generateResponse(messages) {
   const formattedMessages = messages.map((msg) => {
