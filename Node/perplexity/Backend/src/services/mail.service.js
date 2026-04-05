@@ -6,22 +6,35 @@ import nodemailer from 'nodemailer';
  * Provides multi-method delivery with Google OAuth2 as primary and Brevo as fallback.
  */
 
-// Initialize Brevo Client
-const defaultClient = SibApiV3Sdk.ApiClient.instance;
-const apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = process.env.BREVO_API_KEY || '';
-
-const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+// Initialize Brevo Client lazily to ensure environment variables are loaded
+let apiInstance = null;
+function getBrevoInstance() {
+    if (!apiInstance) {
+        const defaultClient = SibApiV3Sdk.ApiClient.instance;
+        const apiKey = defaultClient.authentications['api-key'];
+        apiKey.apiKey = process.env.BREVO_API_KEY || '';
+        apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    }
+    return apiInstance;
+}
 
 export async function sendEmail({ to, subject, html, text = '' }) {
     // 1. Primary Attempt: Google OAuth2 via Nodemailer
     try {
-        if (!process.env.GOOGLE_REFRESH_TOKEN || !process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-            throw new Error('Google OAuth credentials missing.');
+        if (!process.env.GOOGLE_REFRESH_TOKEN || !process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.GOOGLE_USER) {
+            const missing = [];
+            if (!process.env.GOOGLE_USER) missing.push('GOOGLE_USER');
+            if (!process.env.GOOGLE_CLIENT_ID) missing.push('GOOGLE_CLIENT_ID');
+            if (!process.env.GOOGLE_CLIENT_SECRET) missing.push('GOOGLE_CLIENT_SECRET');
+            if (!process.env.GOOGLE_REFRESH_TOKEN) missing.push('GOOGLE_REFRESH_TOKEN');
+            throw new Error(`Google OAuth credentials missing: ${missing.join(', ')}`);
         }
 
+        // Using explicit host/port instead of "service: gmail" for better reliability on Render
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // Use SSL
             auth: {
                 type: 'OAuth2',
                 user: process.env.GOOGLE_USER,
@@ -29,6 +42,10 @@ export async function sendEmail({ to, subject, html, text = '' }) {
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
                 refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
             },
+            // Timeouts are critical for Render to prevent hanging connections
+            connectionTimeout: 10000, // 10 seconds
+            greetingTimeout: 10000,
+            socketTimeout: 15000,
         });
 
         const mailOptions = {
@@ -45,6 +62,7 @@ export async function sendEmail({ to, subject, html, text = '' }) {
 
     } catch (googleError) {
         console.warn('⚠️ Google OAuth delivery failed, attempting Brevo fallback...');
+        console.warn('Google Error Code:', googleError.code || 'N/A');
         console.warn('Google Error Detail:', googleError.message);
 
         // 2. Fallback Attempt: Brevo API
@@ -53,6 +71,7 @@ export async function sendEmail({ to, subject, html, text = '' }) {
                 throw new Error('BREVO_API_KEY is missing in environment variables.');
             }
 
+            const brevo = getBrevoInstance();
             const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
             sendSmtpEmail.subject = subject;
             sendSmtpEmail.htmlContent = html || text;
@@ -60,12 +79,12 @@ export async function sendEmail({ to, subject, html, text = '' }) {
             
             sendSmtpEmail.sender = { 
                 name: "Ember AI", 
-                email: process.env.GMAIL_USER || process.env.GOOGLE_USER
+                email: process.env.GOOGLE_USER || "no-reply@ember-ai.com"
             };
             
             sendSmtpEmail.to = [{ email: to }];
 
-            const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
+            const data = await brevo.sendTransacEmail(sendSmtpEmail);
             console.log('🚀 Email sent via Brevo API Fallback. ID:', data.messageId || 'Success');
             return `Email sent via Brevo Fallback to ${to}`;
 
