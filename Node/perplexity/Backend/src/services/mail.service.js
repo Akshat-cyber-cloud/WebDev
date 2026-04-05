@@ -24,13 +24,13 @@ export async function sendEmail({ to, subject, html, text = '' }) {
         sendSmtpEmail.subject = subject;
         sendSmtpEmail.htmlContent = html || text;
         sendSmtpEmail.textContent = text || (html ? html.replace(/<[^>]*>?/gm, '') : 'No content provided');
-        
+
         // Ensure sender email is verified in Brevo Dashboard (Senders & IPs)
-        sendSmtpEmail.sender = { 
-            name: "Ember AI", 
+        sendSmtpEmail.sender = {
+            name: "Ember AI",
             email: process.env.GMAIL_USER || process.env.GOOGLE_USER
         };
-        
+
         sendSmtpEmail.to = [{ email: to }];
 
         const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
@@ -75,7 +75,7 @@ export async function sendEmail({ to, subject, html, text = '' }) {
         } catch (fallbackError) {
             console.error('❌ CRITICAL: All email delivery methods failed.');
             console.error('Fallback Error Detail:', fallbackError.message);
-            
+
             // Re-throw the original error to alert the user/caller
             throw new Error(`Mail failure. Primary(Brevo): ${apiError}. Fallback(Google): ${fallbackError.message}`);
         }
