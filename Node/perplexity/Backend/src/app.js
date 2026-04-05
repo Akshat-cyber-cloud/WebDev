@@ -29,8 +29,11 @@ app.use(express.static(path.join(__dirname, '../../Frontend/dist')));
 app.use("/api/auth", authRouter);
 app.use("/api/chats", chatRouter)
 
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ status: "ok", message: "Server is healthy" });
+});
+
 app.use((req, res) => {
-    // 1. Let Socket.io handle its own requests (usually /socket.io/)
     if (req.path.startsWith('/socket.io/')) {
         return; // Pass to the next handler (Socket.io)
     }
