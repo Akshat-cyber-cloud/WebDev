@@ -1,6 +1,5 @@
 import {ChatGoogle} from "@langchain/google";
 import {ChatMistralAI} from "@langchain/mistralai"; 
-import {ChatCohere} from "@langchain/cohere";
 import { ChatGroq } from "@langchain/groq";
 import config from "../config/config.js";
 
@@ -16,5 +15,5 @@ export const mistralModel = new ChatMistralAI({
 
 export const groqModel = new ChatGroq({
   apiKey: config.GROQ_API_KEY,
-  model: "llama3-8b-8192", 
+  model: "llama-3.1-8b-instant", 
 });
