@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gauntlet AI | Blind AI Evaluation Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "outline": "#a08e7a",
+                    "on-tertiary-fixed-variant": "#5516be",
+                    "on-secondary-fixed-variant": "#004395",
+                    "tertiary-fixed": "#e9ddff",
+                    "on-primary-fixed-variant": "#653e00",
+                    "on-error": "#690005",
+                    "on-background": "#e5e2e1",
+                    "surface-bright": "#393939",
+                    "on-primary": "#472a00",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-fixed": "#23005c",
+                    "tertiary-container": "#bda2ff",
+                    "secondary": "#adc6ff",
+                    "on-secondary-container": "#e6ecff",
+                    "tertiary-fixed-dim": "#d0bcff",
+                    "surface-container-high": "#2a2a2a",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#353534",
+                    "primary-container": "#f59e0b",
+                    "secondary-container": "#0566d9",
+                    "on-primary-fixed": "#2a1700",
+                    "inverse-on-surface": "#313030",
+                    "surface-container": "#201f1f",
+                    "surface-tint": "#ffb95f",
+                    "primary": "#ffc174",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#ffb95f",
+                    "on-tertiary-container": "#520fbb",
+                    "on-surface-variant": "#d8c3ad",
+                    "tertiary": "#d5c3ff",
+                    "secondary-fixed": "#d8e2ff",
+                    "surface-dim": "#131313",
+                    "on-tertiary": "#3c0091",
+                    "on-surface": "#e5e2e1",
+                    "primary-fixed": "#ffddb8",
+                    "surface-variant": "#353534",
+                    "on-secondary": "#002e6a",
+                    "on-primary-container": "#613b00",
+                    "outline-variant": "#534434",
+                    "inverse-primary": "#855300",
+                    "surface": "#131313",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-secondary-fixed": "#001a42"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"],
+                    "mono": ["JetBrains Mono", "monospace"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #131313; font-family: 'Inter', sans-serif; color: #e5e2e1; }
+        .glass-panel { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .text-glow { text-shadow: 0 0 15px rgba(255, 193, 116, 0.3); }
+        .arena-grid { background-image: radial-gradient(circle at 2px 2px, rgba(255,193,116,0.05) 1px, transparent 0); background-size: 40px 40px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/50">
+<div class="flex justify-between items-center h-20 px-8 max-w-screen-2xl mx-auto font-['Space_Grotesk'] tracking-tight">
+<div class="flex items-center gap-8">
+<a class="text-2xl font-bold tracking-tighter text-amber-500 flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+                    Gauntlet AI
+                </a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-amber-400 font-bold border-b-2 border-amber-500 pb-1" href="#">Arena</a>
+<a class="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Leaderboard</a>
+<a class="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Docs</a>
+<a class="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Pricing</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 text-zinc-400 font-medium hover:text-zinc-100 active:scale-95 duration-200 transition-all">Sign In</button>
+<button class="px-6 py-2 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl active:scale-95 duration-200 transition-all shadow-lg shadow-primary/20">
+                    Get Early Access
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-40 pb-32 overflow-hidden arena-grid">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface to-surface pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10 text-center">
+<div class="inline-block px-4 py-1.5 bg-surface-container-high rounded-full border border-primary/20 mb-8">
+<span class="font-mono text-xs tracking-widest text-primary uppercase font-medium text-glow">[ BLIND AI EVALUATION PLATFORM ]</span>
+</div>
+<h1 class="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-on-surface mb-6 leading-tight">
+                Two Models Enter.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">One Gets Judged.</span>
+</h1>
+<p class="max-w-2xl mx-auto text-lg text-on-surface-variant font-light mb-12 leading-relaxed">
+                Empowering developers with unbiased, statistically rigorous side-by-side LLM benchmarks. Real-time inference battlegrounds for the next generation of AI.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-24">
+<button class="group px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl active:scale-95 duration-200 transition-all shadow-xl shadow-primary/10 flex items-center gap-2">
+                    Start Experimenting
+                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="px-8 py-4 border border-outline-variant text-on-surface font-semibold rounded-xl hover:bg-white/5 active:scale-95 duration-200 transition-all">
+                    See How It Works
+                </button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
+<div class="text-center p-6 bg-surface-container-low rounded-xl">
+<div class="font-mono text-3xl font-bold text-primary mb-1">2,400+</div>
+<div class="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Battles Recorded</div>
+</div>
+<div class="text-center p-6 bg-surface-container-low rounded-xl">
+<div class="font-mono text-3xl font-bold text-primary mb-1">91%</div>
+<div class="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Judgment Accuracy</div>
+</div>
+<div class="text-center p-6 bg-surface-container-low rounded-xl col-span-2 md:col-span-1">
+<div class="font-mono text-3xl font-bold text-primary mb-1">6</div>
+<div class="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Battle Strategies</div>
+</div>
+</div>
+</div>
+</header>
+<!-- How It Works Section -->
+<section class="py-32 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-20">
+<div class="max-w-xl">
+<h2 class="font-headline text-4xl font-bold mb-4">Scientific Evaluation</h2>
+<p class="text-on-surface-variant font-light">Eliminate hallucinations and prompt bias through controlled comparative testing environments.</p>
+</div>
+<div class="hidden lg:block h-px flex-1 bg-outline-variant/30 mx-12 mb-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="relative group p-8 bg-surface-container-low rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2 border-b-2 border-secondary/0 hover:border-secondary/40">
+<div class="font-headline text-8xl font-black text-secondary/5 absolute -top-4 -right-4 pointer-events-none">01</div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary mb-8">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Submit Prompt</h3>
+<p class="text-zinc-500 text-sm leading-relaxed">Enter your testing parameters or choose from our expert-curated evaluation sets designed to stress-test logical reasoning.</p>
+</div>
+<!-- Card 2 -->
+<div class="relative group p-8 bg-surface-container-low rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2 border-b-2 border-tertiary/0 hover:border-tertiary/40">
+<div class="font-headline text-8xl font-black text-tertiary/5 absolute -top-4 -right-4 pointer-events-none">02</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary mb-8">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Watch Live Battle</h3>
+<p class="text-zinc-500 text-sm leading-relaxed">Observe two unidentified models generate responses in parallel. No model names, just raw performance data.</p>
+</div>
+<!-- Card 3 -->
+<div class="relative group p-8 bg-surface-container-low rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2 border-b-2 border-primary/0 hover:border-primary/40">
+<div class="font-headline text-8xl font-black text-primary/5 absolute -top-4 -right-4 pointer-events-none">03</div>
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+</div>
+<h3 class="text-xl font-bold mb-3">The Verdict</h3>
+<p class="text-zinc-500 text-sm leading-relaxed">Cast your vote or let our automated Referee-Models score the responses based on truthfulness, safety, and coherence.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-32">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="font-headline text-4xl font-bold mb-4">Engineered for Precision</h2>
+<div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="p-8 bg-surface-container border border-white/5 rounded-2xl hover:border-primary/40 hover:shadow-[0_0_30px_rgba(255,193,116,0.05)] transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="blind">blind</span>
+<h4 class="text-lg font-bold mb-2">Blind Testing</h4>
+<p class="text-zinc-500 text-sm">Eliminate brand loyalty bias with anonymous side-by-side inference comparisons.</p>
+</div>
+<!-- Feature 2 -->
+<div class="p-8 bg-surface-container border border-white/5 rounded-2xl hover:border-primary/40 hover:shadow-[0_0_30px_rgba(255,193,116,0.05)] transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="database">database</span>
+<h4 class="text-lg font-bold mb-2">RAG Mode</h4>
+<p class="text-zinc-500 text-sm">Evaluate how models handle your private documents and context injection logic.</p>
+</div>
+<!-- Feature 3 -->
+<div class="p-8 bg-surface-container border border-white/5 rounded-2xl hover:border-primary/40 hover:shadow-[0_0_30px_rgba(255,193,116,0.05)] transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="psychology">psychology</span>
+<h4 class="text-lg font-bold mb-2">CoT Analysis</h4>
+<p class="text-zinc-500 text-sm">Chain-of-Thought inspection to see exactly how each model reached its final output.</p>
+</div>
+<!-- Feature 4 -->
+<div class="p-8 bg-surface-container border border-white/5 rounded-2xl hover:border-primary/40 hover:shadow-[0_0_30px_rgba(255,193,116,0.05)] transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="monitoring">monitoring</span>
+<h4 class="text-lg font-bold mb-2">ArenaScore</h4>
+<p class="text-zinc-500 text-sm">Our proprietary scoring algorithm normalized across 40+ performance dimensions.</p>
+</div>
+<!-- Feature 5 -->
+<div class="p-8 bg-surface-container border border-white/5 rounded-2xl hover:border-primary/40 hover:shadow-[0_0_30px_rgba(255,193,116,0.05)] transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="leaderboard">leaderboard</span>
+<h4 class="text-lg font-bold mb-2">Live Leaderboard</h4>
+<p class="text-zinc-500 text-sm">Real-time ELO ratings based on thousands of blind user evaluations daily.</p>
+</div>
+<!-- Feature 6 -->
+<div class="p-8 bg-surface-container border border-white/5 rounded-2xl hover:border-primary/40 hover:shadow-[0_0_30px_rgba(255,193,116,0.05)] transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="analytics">analytics</span>
+<h4 class="text-lg font-bold mb-2">Advanced Analytics</h4>
+<p class="text-zinc-500 text-sm">Exportable telemetry on latency, token costs, and qualitative comparison metrics.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Auth & Mockup Section -->
+<section class="py-32 bg-surface-container-low relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Left: Auth -->
+<div class="bg-surface-container-lowest p-10 rounded-3xl border border-white/5 shadow-2xl relative z-10">
+<div class="flex gap-4 mb-10 border-b border-white/5">
+<button class="pb-4 px-2 text-primary font-bold border-b-2 border-primary">Create Account</button>
+<button class="pb-4 px-2 text-zinc-500 font-medium hover:text-zinc-300">Sign In</button>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Work Email</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl text-on-surface focus:ring-1 focus:ring-primary/40 py-4" placeholder="name@company.com" type="email"/>
+</div>
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl text-on-surface focus:ring-1 focus:ring-primary/40 py-4" placeholder="••••••••" type="password"/>
+</div>
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl active:scale-95 duration-200 shadow-lg shadow-primary/10">
+                        Join the Laboratory
+                    </button>
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-white/5"></div>
+<span class="flex-shrink mx-4 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">OR CONTINUTE WITH</span>
+<div class="flex-grow border-t border-white/5"></div>
+</div>
+<button class="w-full py-4 border border-outline-variant text-on-surface font-semibold rounded-xl hover:bg-white/5 active:scale-95 duration-200 flex items-center justify-center gap-3">
+<img alt="Google Logo" class="w-5 h-5" data-alt="Official Google icon with colored segments on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc4FST7hCMNiHQFMUSG8x8rnMedA9s0GPG4GcooA50tAsaZ4daaP6oO24lKZYCBJmegYNRtXKR70dkgOIaSvfeKg9lsneePB_v2lxz0f5synrhi5FThb2sfgj_i8SElsXQUh7XZ1Lqveb7oAOjhPdUuDSRbRRRtWyLj45jj1Hk-XD-Z0_yoXf72mbx48F4KBUAMKt0eRMeKUWC5vx0nS-Ec2XLZjDE4Ql-cn9QMeednnUSOtfAw5J4PRG8gFh3M_lEFpd45Yu5nA"/>
+                        Google SSO
+                    </button>
+</form>
+<p class="mt-8 text-center text-xs text-zinc-500">
+                    By joining, you agree to our Terms of Intelligence &amp; Data Usage.
+                </p>
+</div>
+<!-- Right: Mockup -->
+<div class="relative group">
+<div class="absolute -inset-4 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+<div class="relative bg-surface-container-high rounded-2xl border border-white/10 shadow-2xl overflow-hidden aspect-video">
+<div class="bg-surface-container-highest px-4 py-3 border-b border-white/10 flex items-center justify-between">
+<div class="flex gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-amber-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-500/50"></div>
+</div>
+<div class="font-mono text-[10px] text-zinc-500 tracking-wider">LIVE_EXPERIMENT_0942.SH</div>
+</div>
+<div class="p-6 grid grid-cols-2 gap-4 h-full">
+<!-- Model A Mock -->
+<div class="bg-surface-container-low rounded-xl p-4 border-l-4 border-secondary/40">
+<div class="font-mono text-[9px] uppercase tracking-widest text-secondary mb-2">MODEL_A_INFERENCE</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-white/5 rounded-full"></div>
+<div class="h-2 w-4/5 bg-white/5 rounded-full"></div>
+<div class="h-2 w-5/6 bg-white/5 rounded-full"></div>
+<div class="h-2 w-2/3 bg-white/5 rounded-full"></div>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[84%]"></div>
+</div>
+<span class="font-mono text-[9px] text-secondary">84%</span>
+</div>
+</div>
+<!-- Model B Mock -->
+<div class="bg-surface-container-low rounded-xl p-4 border-l-4 border-tertiary/40">
+<div class="font-mono text-[9px] uppercase tracking-widest text-tertiary mb-2">MODEL_B_INFERENCE</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-white/5 rounded-full"></div>
+<div class="h-2 w-3/4 bg-white/5 rounded-full"></div>
+<div class="h-2 w-5/6 bg-white/5 rounded-full"></div>
+</div>
+<div class="mt-12 flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[67%]"></div>
+</div>
+<span class="font-mono text-[9px] text-tertiary">67%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#131313] border-t border-zinc-900 w-full py-16">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 font-['Inter'] text-sm">
+<div class="col-span-1 lg:col-span-1">
+<div class="text-lg font-bold text-zinc-100 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500" data-icon="bolt">bolt</span>
+                    Gauntlet AI
+                </div>
+<p class="text-zinc-500 leading-relaxed mb-6">
+                    Evaluate smarter. Ship better. The industry standard for blind LLM evaluation.
+                </p>
+<div class="font-mono text-[10px] text-zinc-700 tracking-tighter uppercase">
+                    Built with Groq · Gemini · Mistral
+                </div>
+</div>
+<div>
+<h5 class="text-zinc-100 font-bold mb-4">Platform</h5>
+<ul class="space-y-2 text-zinc-500">
+<li><a class="hover:text-amber-400 transition-colors" href="#">Public Leaderboard</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Private Arena</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">API Access</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Integrations</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-zinc-100 font-bold mb-4">Company</h5>
+<ul class="space-y-2 text-zinc-500">
+<li><a class="hover:text-amber-400 transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Security</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">API Status</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-zinc-100 font-bold mb-4">Community</h5>
+<ul class="space-y-2 text-zinc-500">
+<li><a class="hover:text-amber-400 transition-colors" href="#">Twitter</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Discord</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">GitHub</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Documentation</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-zinc-900/50 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-zinc-500 text-xs">
+                © 2024 Gauntlet AI. Engineered for precision.
+            </div>
+<div class="flex gap-6">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-[10px] font-mono text-zinc-600 tracking-widest uppercase">SYSTEMS_OPERATIONAL</span>
+</div>
+</div>
+</footer>
+</body></html>

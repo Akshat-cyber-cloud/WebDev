@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verdikt | The Sovereign Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&amp;family=DM+Sans:wght@300;400;500&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#08080d",
+                      "on-error-container": "#ffdad6",
+                      "error": "#ffb4ab",
+                      "inverse-primary": "#006c45",
+                      "outline-variant": "rgba(134, 148, 137, 0.15)",
+                      "on-secondary-fixed": "#001c39",
+                      "surface-container-lowest": "#050508",
+                      "on-surface": "#e4e1e9",
+                      "surface-dim": "#08080d",
+                      "on-tertiary": "#402d00",
+                      "secondary-fixed": "#d4e3ff",
+                      "surface-variant": "#1b1b21",
+                      "on-primary-container": "#005434",
+                      "on-secondary": "#00315d",
+                      "primary-fixed": "#71fcb6",
+                      "on-surface-variant": "#bbcabe",
+                      "on-tertiary-container": "#5e4400",
+                      "primary-fixed-dim": "#51df9c",
+                      "tertiary": "#fecc5d",
+                      "surface-container": "#131318",
+                      "inverse-on-surface": "#303036",
+                      "background": "#08080d",
+                      "secondary-fixed-dim": "#a4c8ff",
+                      "primary": "#3ecf8e",
+                      "surface-tint": "#51df9c",
+                      "secondary-container": "#0276d3",
+                      "on-primary-fixed": "#002112",
+                      "primary-container": "#3ecf8e",
+                      "surface-container-highest": "#1b1b21",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#fdfcff",
+                      "secondary": "#a4c8ff",
+                      "tertiary-container": "#e0b145",
+                      "on-tertiary-fixed": "#261a00",
+                      "surface-container-high": "#0e0e16",
+                      "tertiary-fixed-dim": "#f0c052",
+                      "on-primary": "#003822",
+                      "surface-bright": "#1f1f25",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#005233",
+                      "on-background": "#e4e1e9",
+                      "surface-container-low": "#0e0e16",
+                      "outline": "#3d4a41",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "inverse-surface": "#e4e1e9",
+                      "tertiary-fixed": "#ffdf9f",
+                      "on-secondary-fixed-variant": "#004784"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "syne": ["Syne", "sans-serif"],
+                      "dm-sans": ["DM Sans", "sans-serif"],
+                      "dm-mono": ["DM Mono", "monospace"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ghost-border {
+            border: 1px solid rgba(134, 148, 137, 0.15);
+        }
+        body {
+            background-color: #08080d;
+            color: #e4e1e9;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .text-glow-primary:hover {
+            text-shadow: 0 0 15px rgba(62, 207, 142, 0.5);
+        }
+      </style>
+</head>
+<body class="selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="bg-[#131318]/80 backdrop-blur-md text-[#3ecf8e] font-['DM_Sans'] font-light tracking-wide uppercase docked full-width top-0 sticky z-50 tonal-shift flex justify-between items-center w-full px-8 py-4 max-w-full">
+<div class="flex items-center gap-12">
+<a class="text-2xl font-extrabold tracking-tighter text-white font-['Syne'] uppercase" href="/">
+                Verdi<span class="text-[#3ecf8e]">k</span>t
+            </a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#3ecf8e] border-b-2 border-[#3ecf8e] pb-1 font-['DM_Mono'] text-xs tracking-widest" href="#">Arena</a>
+<a class="text-[#e4e1e9]/60 font-['DM_Mono'] text-xs tracking-widest hover:text-[#3ecf8e] transition-colors duration-300" href="#">Leaderboard</a>
+<a class="text-[#e4e1e9]/60 font-['DM_Mono'] text-xs tracking-widest hover:text-[#3ecf8e] transition-colors duration-300" href="#">Docs</a>
+<a class="text-[#e4e1e9]/60 font-['DM_Mono'] text-xs tracking-widest hover:text-[#3ecf8e] transition-colors duration-300" href="#">Pricing</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#e4e1e9]/60 font-['DM_Mono'] text-xs tracking-widest uppercase hover:text-white transition-colors">Sign In</button>
+<button class="bg-[#3ecf8e] text-[#002112] px-6 py-2 text-xs font-bold tracking-widest uppercase hover:scale-95 duration-150 ease-in-out">Get Early Access</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col justify-center px-8 md:px-16 overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary blur-[120px] rounded-full"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary blur-[120px] rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="max-w-2xl">
+<div class="flex items-center gap-4 mb-8">
+<span class="h-[1px] w-12 bg-primary"></span>
+<span class="font-dm-mono text-primary text-xs tracking-[0.3em] uppercase">The Sovereign Lab</span>
+</div>
+<h1 class="font-syne text-6xl md:text-8xl leading-none mb-8 tracking-tighter uppercase">
+                        Two Models Enter.<br/>
+                        One Gets <span class="text-primary italic">Judged.</span>
+</h1>
+<p class="font-dm-sans text-xl text-on-surface/60 mb-12 font-light leading-relaxed">
+                        Experience the absolute authority of blind A/B data battles. Our protocol strips away the brand bias to reveal the raw numerical truth of LLM performance.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-10 py-5 text-sm font-bold tracking-widest uppercase hover:shadow-[0_0_20px_-5px_#3ecf8e]">
+                            Enter the Arena
+                        </button>
+<button class="ghost-border px-10 py-5 text-sm font-bold tracking-widest uppercase hover:bg-surface-container transition-colors">
+                            View Data Sets
+                        </button>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="grid grid-cols-2 gap-4">
+<div class="ghost-border p-8 bg-surface-container-low">
+<div class="font-dm-mono text-primary text-4xl mb-2">1,204,551</div>
+<div class="font-syne text-xs uppercase tracking-widest text-on-surface/40">Total Verdicts</div>
+</div>
+<div class="ghost-border p-8 bg-surface-container-low mt-12">
+<div class="font-dm-mono text-secondary text-4xl mb-2">84.2%</div>
+<div class="font-syne text-xs uppercase tracking-widest text-on-surface/40">Agreement Rate</div>
+</div>
+<div class="ghost-border p-8 bg-surface-container-low">
+<div class="font-dm-mono text-tertiary text-4xl mb-2">42</div>
+<div class="font-syne text-xs uppercase tracking-widest text-on-surface/40">Active Protocols</div>
+</div>
+<div class="ghost-border p-8 bg-surface-container-low mt-12">
+<div class="font-dm-mono text-[#e4e1e9] text-4xl mb-2">0.02ms</div>
+<div class="font-syne text-xs uppercase tracking-widest text-on-surface/40">Latency Verdict</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-32 px-8 md:px-16 bg-surface-container-low">
+<div class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<h2 class="font-syne text-4xl uppercase tracking-tight max-w-md">The Neutrality Protocol</h2>
+<div class="font-dm-mono text-xs text-on-surface/40 tracking-widest">PHASE_01 // TRIAL_FLOW</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="relative group">
+<div class="absolute -top-1 left-0 w-full h-[2px] bg-[#4d9fff] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="ghost-border p-10 bg-surface h-full">
+<span class="font-dm-mono text-[#4d9fff] mb-6 block text-sm">01. SUBMIT</span>
+<h3 class="font-syne text-xl uppercase mb-4">Input Prompt</h3>
+<p class="font-dm-sans text-on-surface/50 font-light leading-relaxed">
+                            Provide your instruction or data set. Our lab anonymizes the query before routing to the neural competitors.
+                        </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative group">
+<div class="absolute -top-1 left-0 w-full h-[2px] bg-[#9d7cf4] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="ghost-border p-10 bg-surface h-full">
+<span class="font-dm-mono text-[#9d7cf4] mb-6 block text-sm">02. WATCH</span>
+<h3 class="font-syne text-xl uppercase mb-4">Parallel Trial</h3>
+<p class="font-dm-sans text-on-surface/50 font-light leading-relaxed">
+                            Observe two blind outputs generated in real-time. No branding, no bias, just the raw intelligence on display.
+                        </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative group">
+<div class="absolute -top-1 left-0 w-full h-[2px] bg-[#3ecf8e] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="ghost-border p-10 bg-surface h-full">
+<span class="font-dm-mono text-[#3ecf8e] mb-6 block text-sm">03. VERDICT</span>
+<h3 class="font-syne text-xl uppercase mb-4">Final Judgment</h3>
+<p class="font-dm-sans text-on-surface/50 font-light leading-relaxed">
+                            Select the superior response. Your verdict is recorded in our high-court database to shape global model rankings.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-32 px-8 md:px-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant">
+<div class="bg-surface p-12 group hover:bg-surface-container transition-colors duration-500">
+<div class="mb-8 w-12 h-12 flex items-center justify-center ghost-border text-primary group-hover:shadow-[0_0_15px_rgba(62,207,142,0.2)]">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h4 class="font-syne text-lg uppercase mb-4 tracking-tight">Statistical Rigor</h4>
+<p class="font-dm-sans text-sm text-on-surface/40 leading-relaxed">Advanced ELO-based ranking systems ensuring every point is earned through quality.</p>
+</div>
+<div class="bg-surface p-12 group hover:bg-surface-container transition-colors duration-500">
+<div class="mb-8 w-12 h-12 flex items-center justify-center ghost-border text-primary group-hover:shadow-[0_0_15px_rgba(62,207,142,0.2)]">
+<span class="material-symbols-outlined">security</span>
+</div>
+<h4 class="font-syne text-lg uppercase mb-4 tracking-tight">Anonymized Processing</h4>
+<p class="font-dm-sans text-sm text-on-surface/40 leading-relaxed">Proprietary obfuscation layers to prevent model fingerprinting during battles.</p>
+</div>
+<div class="bg-surface p-12 group hover:bg-surface-container transition-colors duration-500">
+<div class="mb-8 w-12 h-12 flex items-center justify-center ghost-border text-primary group-hover:shadow-[0_0_15px_rgba(62,207,142,0.2)]">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<h4 class="font-syne text-lg uppercase mb-4 tracking-tight">Sub-second Latency</h4>
+<p class="font-dm-sans text-sm text-on-surface/40 leading-relaxed">High-performance inference engine for immediate side-by-side comparison.</p>
+</div>
+<div class="bg-surface p-12 group hover:bg-surface-container transition-colors duration-500">
+<div class="mb-8 w-12 h-12 flex items-center justify-center ghost-border text-primary group-hover:shadow-[0_0_15px_rgba(62,207,142,0.2)]">
+<span class="material-symbols-outlined">database</span>
+</div>
+<h4 class="font-syne text-lg uppercase mb-4 tracking-tight">Open Data Export</h4>
+<p class="font-dm-sans text-sm text-on-surface/40 leading-relaxed">Download trial results for local benchmarking and independent research.</p>
+</div>
+<div class="bg-surface p-12 group hover:bg-surface-container transition-colors duration-500">
+<div class="mb-8 w-12 h-12 flex items-center justify-center ghost-border text-primary group-hover:shadow-[0_0_15px_rgba(62,207,142,0.2)]">
+<span class="material-symbols-outlined">group</span>
+</div>
+<h4 class="font-syne text-lg uppercase mb-4 tracking-tight">Collaborative Scoring</h4>
+<p class="font-dm-sans text-sm text-on-surface/40 leading-relaxed">Invite team members to participate in private model trial environments.</p>
+</div>
+<div class="bg-surface p-12 group hover:bg-surface-container transition-colors duration-500">
+<div class="mb-8 w-12 h-12 flex items-center justify-center ghost-border text-primary group-hover:shadow-[0_0_15px_rgba(62,207,142,0.2)]">
+<span class="material-symbols-outlined">api</span>
+</div>
+<h4 class="font-syne text-lg uppercase mb-4 tracking-tight">Neutral API</h4>
+<p class="font-dm-sans text-sm text-on-surface/40 leading-relaxed">Integrate Verdikt's judging protocol directly into your CI/CD pipeline.</p>
+</div>
+</div>
+</section>
+<!-- Auth & Preview Section -->
+<section class="py-32 px-8 md:px-16 bg-surface-container-low border-y border-outline-variant">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<!-- Form -->
+<div class="bg-surface p-12 ghost-border">
+<div class="flex gap-12 mb-12 border-b border-outline-variant">
+<button class="pb-4 border-b-2 border-primary text-primary font-syne text-sm uppercase tracking-widest">Sign In</button>
+<button class="pb-4 text-on-surface/40 font-syne text-sm uppercase tracking-widest hover:text-on-surface transition-colors">Create Account</button>
+</div>
+<form class="space-y-8">
+<div>
+<label class="block font-dm-mono text-[10px] uppercase tracking-[0.2em] text-on-surface/40 mb-2">Registry ID</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface placeholder:text-on-surface/20 py-3 font-dm-sans" placeholder="agent@sovereign.lab" type="email"/>
+</div>
+<div>
+<label class="block font-dm-mono text-[10px] uppercase tracking-[0.2em] text-on-surface/40 mb-2">Access Key</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface placeholder:text-on-surface/20 py-3 font-dm-sans" placeholder="••••••••" type="password"/>
+</div>
+<button class="w-full bg-primary text-on-primary py-5 font-bold uppercase tracking-[0.2em] text-sm hover:brightness-110 transition-all">
+                            Initialize Session
+                        </button>
+</form>
+<p class="mt-8 font-dm-sans text-xs text-on-surface/40 text-center">
+                        Secure lab access restricted to authorized researchers.
+                    </p>
+</div>
+<!-- Battle Mockup -->
+<div class="space-y-6">
+<div class="font-dm-mono text-xs text-primary tracking-widest mb-4">LIVE_LAB_PREVIEW</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="ghost-border bg-surface overflow-hidden relative">
+<div class="h-1 w-full bg-secondary"></div>
+<div class="p-6">
+<div class="font-dm-mono text-[10px] text-secondary mb-4 uppercase">Model Alpha</div>
+<div class="space-y-3">
+<div class="h-2 w-3/4 bg-outline-variant"></div>
+<div class="h-2 w-full bg-outline-variant"></div>
+<div class="h-2 w-5/6 bg-outline-variant"></div>
+</div>
+</div>
+</div>
+<div class="ghost-border bg-surface overflow-hidden relative">
+<div class="h-1 w-full bg-[#9d7cf4]"></div>
+<div class="p-6">
+<div class="font-dm-mono text-[10px] text-[#9d7cf4] mb-4 uppercase">Model Beta</div>
+<div class="space-y-3">
+<div class="h-2 w-full bg-outline-variant"></div>
+<div class="h-2 w-4/5 bg-outline-variant"></div>
+<div class="h-2 w-full bg-outline-variant"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 ghost-border border-primary/20 p-8 flex flex-col items-center justify-center text-center">
+<div class="w-12 h-12 bg-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<div class="font-syne text-primary text-2xl uppercase mb-2">Verdict: Model Alpha</div>
+<div class="font-dm-mono text-xs text-primary/60">Confidence Score: 0.9842</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#131318] flex flex-col md:flex-row justify-between items-center w-full px-12 py-16 gap-8 border-t border-white/5">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<a class="text-xl font-bold text-white font-['Syne'] uppercase" href="/">
+                Verdi<span class="text-[#3ecf8e]">k</span>t
+            </a>
+<p class="font-['DM_Sans'] text-sm text-[#e4e1e9]/50 max-w-xs text-center md:text-left">
+                The verdict is in the data. Neutrality protocol v4.2.0-stable
+            </p>
+</div>
+<div class="flex flex-col items-center gap-6">
+<div class="flex gap-8">
+<a class="text-[#e4e1e9]/40 text-xs font-['DM_Mono'] uppercase tracking-widest hover:text-white transition-opacity" href="#">Terms</a>
+<a class="text-[#e4e1e9]/40 text-xs font-['DM_Mono'] uppercase tracking-widest hover:text-white transition-opacity" href="#">Privacy</a>
+<a class="text-[#e4e1e9]/40 text-xs font-['DM_Mono'] uppercase tracking-widest hover:text-white transition-opacity" href="#">Twitter</a>
+<a class="text-[#e4e1e9]/40 text-xs font-['DM_Mono'] uppercase tracking-widest hover:text-white transition-opacity" href="#">GitHub</a>
+</div>
+<div class="text-[#e4e1e9]/20 text-[10px] font-['DM_Mono'] uppercase tracking-widest">
+                Built with Groq · Gemini · Mistral
+            </div>
+</div>
+<div class="font-['DM_Sans'] text-xs text-[#e4e1e9]/50 text-center md:text-right">
+            © 2024 Verdikt. <br/>
+            All data points verified by independent nodes.
+        </div>
+</footer>
+</body></html>

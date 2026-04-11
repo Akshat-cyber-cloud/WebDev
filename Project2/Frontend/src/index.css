@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* =========================
+   THEME TOKENS
+========================= */
+@theme {
+  /* Core Colors */
+  --color-background: #0b0f14;
+  --color-surface: #0f141a;
+  --color-surface-container: #121821;
+  --color-surface-container-low: #0d1218;
+  --color-surface-container-high: #151c26;
+  --color-surface-container-highest: #1a2230;
+
+  --color-on-surface: #e4e1e9;
+  --color-on-surface-variant: #9fb0a3;
+
+  --color-primary: #3ecf8e;
+  --color-primary-fixed: #71fcb6;
+  --color-primary-container: #1f3a2d;
+
+  --color-secondary: #a4c8ff;
+  --color-secondary-container: #1a2c44;
+
+  --color-tertiary: #fecc5d;
+  --color-tertiary-container: #3a2f14;
+
+  --color-outline: rgba(134, 148, 137, 0.15);
+
+  /* Typography */
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+@layer base {
+  body {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(62, 207, 142, 0.08), transparent 40%),
+      radial-gradient(circle at 80% 30%, rgba(164, 200, 255, 0.06), transparent 40%),
+      #0b0f14;
+
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* =========================
+   UTILITIES
+========================= */
+@layer utilities {
+
+  /* Glass Panel */
+  .glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Surface Cards (IMPORTANT) */
+  .surface-card {
+    background: rgba(18, 24, 33, 0.6);
+    border: 1px solid var(--color-outline);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Glow Text */
+  .text-glow {
+    text-shadow:
+      0 0 8px rgba(62, 207, 142, 0.4),
+      0 0 20px rgba(62, 207, 142, 0.2);
+  }
+
+  /* Glow Spot (background energy) */
+  .glow-spot {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(62, 207, 142, 0.15),
+      transparent 70%
+    );
+    filter: blur(80px);
+    z-index: 0;
+  }
+
+  /* Arena Grid */
+  .arena-grid {
+    background-image: radial-gradient(
+      circle at 2px 2px,
+      rgba(62, 207, 142, 0.03) 1px,
+      transparent 0
+    );
+    background-size: 40px 40px;
+  }
+
+  /* Diagnostic Grid */
+  .diagnostic-grid {
+    background-image:
+      linear-gradient(to right, rgba(62, 207, 142, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(62, 207, 142, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* =========================
+     ANIMATIONS
+  ========================= */
+
+  @keyframes float-slow {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(30px, -50px, 0) scale(1.05);
+    }
+    66% {
+      transform: translate3d(-20px, 20px, 0) scale(0.95);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes float-slow-reverse {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(-30px, 50px, 0) scale(0.95);
+    }
+    66% {
+      transform: translate3d(20px, -20px, 0) scale(1.05);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes drift-grid {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 40px, 0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float-slow 20s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-float-reverse {
+    animation: float-slow-reverse 25s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-grid-drift {
+    animation: drift-grid 20s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease forwards;
+  }
+}
