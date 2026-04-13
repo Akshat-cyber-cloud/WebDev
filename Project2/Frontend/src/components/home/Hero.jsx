@@ -26,10 +26,10 @@ const Hero = () => {
       {/* Decorative Glows (Pure Green) */}
       <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
       <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none animate-float-reverse"></div>
-      
+
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-8 relative z-10 text-center flex-1 flex flex-col justify-center">
-        <motion.div 
+        <motion.div
           custom={0}
           initial="hidden"
           animate="visible"
@@ -40,7 +40,7 @@ const Hero = () => {
             [ BLIND AI EVALUATION PLATFORM ]
           </span>
         </motion.div>
-        
+
         <h1 className="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-on-surface mb-6 leading-tight flex flex-col items-center">
           <motion.span custom={1} initial="hidden" animate="visible" variants={titleVariants}>
             Two Models Enter.
@@ -49,21 +49,21 @@ const Hero = () => {
             One Gets Judged.
           </motion.span>
         </h1>
-        
-        <motion.p 
-          custom={3} 
-          initial="hidden" 
-          animate="visible" 
+
+        <motion.p
+          custom={3}
+          initial="hidden"
+          animate="visible"
           variants={titleVariants}
           className="max-w-2xl mx-auto text-lg text-on-surface-variant font-light mb-12 leading-relaxed"
         >
           Empowering developers with unbiased, statistically rigorous side-by-side LLM benchmarks. Real-time inference battlegrounds for the next generation of AI.
         </motion.p>
-        
-        <motion.div 
-          custom={4} 
-          initial="hidden" 
-          animate="visible" 
+
+        <motion.div
+          custom={4}
+          initial="hidden"
+          animate="visible"
           variants={titleVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
         >
@@ -76,11 +76,11 @@ const Hero = () => {
             See How It Works
           </button>
         </motion.div>
-        
-        <motion.div 
-          custom={5} 
-          initial="hidden" 
-          animate="visible" 
+
+        <motion.div
+          custom={5}
+          initial="hidden"
+          animate="visible"
           variants={titleVariants}
           className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto"
         >
@@ -98,7 +98,7 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-      
+
       <div className="w-full absolute bottom-0 left-0">
         <Ticker items={tickerItems} speed={30} />
       </div>

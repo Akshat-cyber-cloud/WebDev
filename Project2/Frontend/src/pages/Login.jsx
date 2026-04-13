@@ -25,10 +25,18 @@ const Login = () => {
         <div className="absolute bottom-1/4 left-1/4 w-[700px] h-[700px] bg-primary/10 blur-[150px] rounded-full animate-float-reverse mix-blend-screen"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/5 blur-[140px] rounded-full animate-float mix-blend-screen"></div>
       </div>
-      
+
       {/* Foreground Card */}
-      <div className="max-w-md w-full bg-surface-container/90 backdrop-blur-xl border border-white/5 p-10 relative shadow-2xl shadow-black/50 z-10 ring-1 ring-white/10">        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
-        
+      <div className="max-w-md w-full bg-surface-container/90 backdrop-blur-xl border border-white/5 p-10 relative shadow-2xl shadow-black/50 z-10 ring-1 ring-white/10">
+        <Link
+          to="/"
+          className="absolute top-6 right-6 text-on-surface/40 hover:text-white transition-colors z-20"
+          aria-label="Close"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </Link>
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+
         <div className="text-center mb-10">
           <Link to="/" className="font-syne text-2xl uppercase tracking-tighter text-white inline-block mb-8">
             Gauntlet <span className="text-primary italic">AI</span>
@@ -46,10 +54,10 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block font-dm-mono text-[10px] uppercase tracking-[0.2em] text-on-surface/40 mb-2">Registry ID (Email)</label>
-            <input 
+            <input
               required
               type="email"
-              className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface placeholder:text-on-surface/20 py-3 font-dm-sans outline-none" 
+              className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface placeholder:text-on-surface/20 py-3 font-dm-sans outline-none"
               placeholder="agent@sovereign.lab"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -57,10 +65,10 @@ const Login = () => {
           </div>
           <div>
             <label className="block font-dm-mono text-[10px] uppercase tracking-[0.2em] text-on-surface/40 mb-2">Access Key (Password)</label>
-            <input 
+            <input
               required
               type="password"
-              className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface placeholder:text-on-surface/20 py-3 font-dm-sans outline-none" 
+              className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface placeholder:text-on-surface/20 py-3 font-dm-sans outline-none"
               placeholder="••••••••"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}

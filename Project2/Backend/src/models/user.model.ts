@@ -45,3 +45,4 @@ userSchema.methods.matchPassword = async function (enteredPassword: string) {
 };
 
 export default mongoose.model<IUser>('User', userSchema);
+export default mongoose.model<IUser>('User', userSchema);

@@ -46,7 +46,7 @@
     background:
       radial-gradient(circle at 20% 20%, rgba(62, 207, 142, 0.08), transparent 40%),
       radial-gradient(circle at 80% 30%, rgba(164, 200, 255, 0.06), transparent 40%),
-      #0b0f14;
+      #0b0f1447;
 
     color: var(--color-on-surface);
     font-family: var(--font-body);
@@ -87,22 +87,18 @@
     position: absolute;
     width: 400px;
     height: 400px;
-    background: radial-gradient(
-      circle,
-      rgba(62, 207, 142, 0.15),
-      transparent 70%
-    );
+    background: radial-gradient(circle,
+        rgba(62, 207, 142, 0.15),
+        transparent 70%);
     filter: blur(80px);
     z-index: 0;
   }
 
   /* Arena Grid */
   .arena-grid {
-    background-image: radial-gradient(
-      circle at 2px 2px,
-      rgba(62, 207, 142, 0.03) 1px,
-      transparent 0
-    );
+    background-image: radial-gradient(circle at 2px 2px,
+        rgba(62, 207, 142, 0.03) 1px,
+        transparent 0);
     background-size: 40px 40px;
   }
 
@@ -122,12 +118,15 @@
     0% {
       transform: translate3d(0, 0, 0) scale(1);
     }
+
     33% {
       transform: translate3d(30px, -50px, 0) scale(1.05);
     }
+
     66% {
       transform: translate3d(-20px, 20px, 0) scale(0.95);
     }
+
     100% {
       transform: translate3d(0, 0, 0) scale(1);
     }
@@ -137,12 +136,15 @@
     0% {
       transform: translate3d(0, 0, 0) scale(1);
     }
+
     33% {
       transform: translate3d(-30px, 50px, 0) scale(0.95);
     }
+
     66% {
       transform: translate3d(20px, -20px, 0) scale(1.05);
     }
+
     100% {
       transform: translate3d(0, 0, 0) scale(1);
     }
@@ -152,6 +154,7 @@
     0% {
       transform: translate3d(0, 0, 0);
     }
+
     100% {
       transform: translate3d(0, 40px, 0);
     }
@@ -162,6 +165,7 @@
       opacity: 0;
       transform: translateY(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);

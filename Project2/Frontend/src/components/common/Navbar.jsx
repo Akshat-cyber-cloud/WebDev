@@ -13,10 +13,10 @@ const Navbar = () => {
   });
 
   return (
-    <motion.nav 
+    <motion.nav
       className="fixed top-0 w-full z-50 transition-all duration-300"
       initial={{ backgroundColor: 'rgba(8, 8, 13, 0)', backdropFilter: 'blur(0px)', borderBottom: '1px solid rgba(255, 255, 255, 0)' }}
-      animate={{ 
+      animate={{
         backgroundColor: isScrolled ? 'rgba(8, 8, 13, 0.8)' : 'rgba(8, 8, 13, 0)',
         backdropFilter: isScrolled ? 'blur(16px)' : 'blur(0px)',
         borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(255, 255, 255, 0)',
@@ -42,7 +42,7 @@ const Navbar = () => {
               <Link to="/hello" className="text-zinc-100 font-dm-mono text-xs uppercase tracking-widest hover:text-primary transition-colors">
                 Agent: {user.name}
               </Link>
-              <button 
+              <button
                 onClick={logout}
                 className="px-6 py-2 bg-surface border border-outline-variant text-primary text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-all"
               >
