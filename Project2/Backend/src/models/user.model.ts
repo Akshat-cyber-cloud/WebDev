@@ -19,9 +19,16 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: [true, 'Please add a password'],
+      required: function (this: any) {
+        return !this.googleId;
+      },
       minlength: 6,
       select: false,
+    },
+    googleId: {
+      type: String,
+      unique: true,
+      sparse: true,
     },
   },
   {
@@ -31,7 +38,7 @@ const userSchema = new Schema<IUser>(
 
 // Encrypt password using bcrypt
 userSchema.pre('save', async function () {
-  if (!this.isModified('password')) {
+  if (!this.password || !this.isModified('password')) {
     return;
   }
 
@@ -41,8 +48,12 @@ userSchema.pre('save', async function () {
 
 // Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function (enteredPassword: string) {
+  if (!this.password) {
+    return false;
+  }
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+
 export default mongoose.model<IUser>('User', userSchema);
-export default mongoose.model<IUser>('User', userSchema);
+

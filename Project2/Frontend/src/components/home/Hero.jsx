@@ -3,6 +3,86 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Ticker from '../ui/Ticker';
 
+const RadiantPortal = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Container for the light effect, centered vertically on the left edge */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-full flex items-center">
+
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="absolute left-[-15px] w-[40px] md:w-[60px] h-[30vh] md:h-[40vh] bg-white rounded-r-3xl z-20"
+          style={{
+            boxShadow: '0 0 40px 10px rgba(255,255,255,0.8), 0 0 100px 30px rgba(255,255,255,0.6)'
+          }}
+        ></motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0.5 }}
+          animate={{ opacity: [0.6, 0.9, 0.6], scaleX: 1 }}
+          transition={{
+            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            scaleX: { duration: 2, ease: "easeOut" }
+          }}
+          className="absolute left-0 w-[120vw] h-[200vh] origin-left"
+          style={{
+            clipPath: 'polygon(0 35%, 100% 0%, 100% 100%, 0 65%)',
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,215,0,0.8) 5%, rgba(255,69,0,0.6) 20%, rgba(139,0,0,0.3) 50%, rgba(0,0,0,0) 80%)',
+            filter: 'blur(40px)',
+            mixBlendMode: 'screen'
+          }}
+        ></motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0.5 }}
+          animate={{ opacity: [0.4, 0.7, 0.4], scaleX: 1 }}
+          transition={{
+            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 },
+            scaleX: { duration: 1.5, ease: "easeOut", delay: 0.2 }
+          }}
+          className="absolute left-0 w-[80vw] h-[100vh] origin-left"
+          style={{
+            clipPath: 'polygon(0 40%, 100% 20%, 100% 80%, 0 60%)',
+            background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,140,0,0.8) 10%, rgba(255,0,0,0.4) 40%, transparent 100%)',
+            filter: 'blur(30px)',
+            mixBlendMode: 'screen'
+          }}
+        ></motion.div>
+
+        {/* Drifting Particles in the beam */}
+        <div className="absolute inset-0 overflow-hidden mix-blend-screen opacity-60">
+          {[...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{
+                x: -100,
+                y: '50vh',
+                opacity: 0,
+                scale: Math.random() * 0.5 + 0.5
+              }}
+              animate={{
+                x: '100vw',
+                y: `${50 + (Math.random() - 0.5) * 80}vh`,
+                opacity: [0, 1, 0]
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                delay: Math.random() * 10,
+                ease: "linear"
+              }}
+              className="absolute top-0 left-0 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 const Hero = () => {
   const tickerItems = [
     "BATTLE #8423: Claude 3 vs GPT-4 » VERDICT PENDING",
@@ -23,9 +103,7 @@ const Hero = () => {
 
   return (
     <header className="relative pt-40 pb-16 overflow-hidden arena-grid min-h-[90vh] flex flex-col items-center justify-center">
-      {/* Decorative Glows (Pure Green) */}
-      <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none animate-float-reverse"></div>
+      <RadiantPortal />
 
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-8 relative z-10 text-center flex-1 flex flex-col justify-center">

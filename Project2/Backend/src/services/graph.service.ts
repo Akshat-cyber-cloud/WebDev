@@ -1,8 +1,18 @@
-import { HumanMessage } from "@langchain/core/messages";
+import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { StateSchema, MessagesValue, ReducedValue, StateGraph, START, END } from "@langchain/langgraph";
 import type { GraphNode } from "@langchain/langgraph";
 import { geminiModel, groqModel, mistralModel } from "./models.service.js";
 import { z } from "zod";
+
+const FORMATTING_INSTRUCTION = `
+Regardless of the user's query, always format your response using professional, high-fidelity markdown.
+1. Use hierarchical headers (e.g., ### Section, #### Subsection).
+2. Use bolding (**Text**) for key concepts and technical terms.
+3. Use consistent lists (numbered or bulleted) for steps or features.
+4. Ensure double line breaks between paragraphs for optimal spacing.
+5. Use code blocks (\`\`\`language) for any technical data, commands, or math.
+Maintain a technical, "Kinetic Observatory" tone—precise, analytical, and data-driven.
+`;
 
 /**
  * State Schema defines the structure of the state that will be passed through the graph. It includes:
@@ -43,9 +53,11 @@ const solutionNode: GraphNode<typeof State> = async (state) => {
     const message = state.messages[0];
     if (!message) throw new Error("No message found in state");
 
+    const systemMsg = new SystemMessage(FORMATTING_INSTRUCTION);
+
     const [mistral_solution, gemini_solution] = await Promise.all([
-        mistralModel.invoke([message]),
-        geminiModel.invoke([message]),
+        mistralModel.invoke([systemMsg, message]),
+        geminiModel.invoke([systemMsg, message]),
     ]);
 
     return {

@@ -1,31 +1,34 @@
 @import "tailwindcss";
+@import "@tailwindcss/typography";
 
 /* =========================
    THEME TOKENS
 ========================= */
 @theme {
-  /* Core Colors */
-  --color-background: #0b0f14;
-  --color-surface: #0f141a;
-  --color-surface-container: #121821;
-  --color-surface-container-low: #0d1218;
-  --color-surface-container-high: #151c26;
-  --color-surface-container-highest: #1a2230;
+  /* Core Colors - Stitch Kinetic Observatory */
+  --color-background: #131313;
+  --color-surface: #131313;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
 
-  --color-on-surface: #e4e1e9;
-  --color-on-surface-variant: #9fb0a3;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #d8c3ad;
 
-  --color-primary: #3ecf8e;
-  --color-primary-fixed: #71fcb6;
-  --color-primary-container: #1f3a2d;
+  --color-primary: #f59e0b;
+  --color-primary-container: #f59e0b;
+  --color-on-primary: #472a00;
 
-  --color-secondary: #a4c8ff;
-  --color-secondary-container: #1a2c44;
+  --color-secondary: #adc6ff;
+  --color-secondary-container: #0566d9;
 
-  --color-tertiary: #fecc5d;
-  --color-tertiary-container: #3a2f14;
+  --color-tertiary: #d5c3ff;
+  --color-tertiary-container: #bda2ff;
 
-  --color-outline: rgba(134, 148, 137, 0.15);
+  --color-outline: rgba(160, 142, 122, 0.15);
+  --color-outline-variant: rgba(83, 68, 52, 0.15);
 
   /* Typography */
   --font-headline: "Space Grotesk", sans-serif;
@@ -190,5 +193,92 @@
 
   .animate-fade-in {
     animation: fadeIn 0.6s ease forwards;
+  }
+
+  /* =========================
+     MARKDOWN PROSE STYLES (REFINED)
+  ========================= */
+  .prose {
+    --tw-prose-body: var(--color-on-surface);
+    --tw-prose-headings: var(--color-primary);
+    --tw-prose-bold: var(--color-primary);
+    --tw-prose-bullets: var(--color-primary);
+    --tw-prose-counters: var(--color-primary);
+    --tw-prose-quotes: var(--color-primary);
+    --tw-prose-code: var(--color-primary);
+    --tw-prose-links: var(--color-secondary);
+    --tw-prose-hr: var(--color-outline);
+    max-width: none !important;
+  }
+
+  .prose p {
+    margin-top: 1.75rem !important;
+    margin-bottom: 1.75rem !important;
+    line-height: 1.8 !important;
+    font-weight: 300;
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    font-family: var(--font-headline);
+    margin-top: 2.5rem !important;
+    margin-bottom: 1rem !important;
+    font-weight: 700;
+  }
+
+  .prose ul, .prose ol {
+    padding-left: 2rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .prose li {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    padding-left: 0.5rem;
+  }
+
+  .prose li p {
+     margin: 0 !important;
+  }
+
+  /* Code Blocks & Technical Data */
+  .prose pre {
+    background-color: var(--color-surface-container-high) !important;
+    border: 1px solid var(--color-outline-variant) !important;
+    padding: 1.5rem !important;
+    margin: 2rem 0 !important;
+    border-radius: var(--radius-lg) !important;
+    overflow-x: auto;
+  }
+
+  .prose code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    background-color: var(--color-surface-container-highest);
+    border-radius: 4px;
+    color: var(--color-primary) !important;
+  }
+
+  .prose pre code {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: var(--color-on-surface) !important;
+    font-size: 13px !important;
+    display: block;
+    line-height: 1.6;
+  }
+
+  /* Numbered Lists Styling */
+  .prose ol > li::marker {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+
+  /* Bullet List Styling */
+  .prose ul > li::marker {
+    color: var(--color-primary);
   }
 }

@@ -90,3 +90,18 @@ export const getMe = async (req: Request, res: Response): Promise<void> => {
     res.status(404).json({ message: 'User not found' });
   }
 };
+
+// @desc    Google OAuth callback
+// @route   GET /api/auth/google/callback
+// @access  Public
+export const googleCallback = async (req: Request, res: Response): Promise<void> => {
+  const user = req.user as any;
+
+  if (user) {
+    generateToken(res, user._id.toString());
+    res.redirect(process.env.FRONTEND_URL || 'http://localhost:5173/hello');
+  } else {
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`);
+  }
+};
+

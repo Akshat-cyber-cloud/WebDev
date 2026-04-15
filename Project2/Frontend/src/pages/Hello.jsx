@@ -7,10 +7,8 @@ const Hello = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !user) {
-      navigate('/login');
-    }
-  }, [user, loading, navigate]);
+    navigate('/battle');
+  }, [navigate]);
 
   if (loading) {
     return (
