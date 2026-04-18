@@ -1,58 +1,52 @@
 import React from 'react';
+import GauntletLogo from '../ui/GauntletLogo';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#131313] border-t border-zinc-900 w-full py-16">
-      <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 font-body text-sm">
-        <div className="col-span-1 lg:col-span-1">
-          <div className="text-lg font-bold text-zinc-100 mb-4 flex items-center gap-2">
-            <span className="material-symbols-outlined text-amber-500">bolt</span>
-            Gauntlet AI
+    <footer className="bg-[#101010] min-h-[500px] mt-24 relative overflow-hidden flex flex-col justify-between pt-24 px-8 md:px-16 lg:px-24 border-t border-white/5">
+      
+      {/* Top section: Info and Links */}
+      <div className="max-w-screen-2xl mx-auto w-full flex flex-col md:flex-row justify-between mb-32 z-10">
+        
+        {/* Left Side: Logo Marker & Tagline */}
+        <div className="mb-16 md:mb-0 max-w-sm">
+          <div className="mb-6 opacity-60">
+            <GauntletLogo size={32} color="rgb(212, 212, 216)" />
           </div>
-          <p className="text-zinc-500 leading-relaxed mb-6">
-            Evaluate smarter. Ship better. The industry standard for blind LLM evaluation.
+          <p className="text-xl md:text-2xl text-zinc-300 font-light leading-snug">
+            Gauntlet is the home<br/>you've been searching for.
           </p>
-          <div className="font-mono text-[10px] text-zinc-700 tracking-tighter uppercase">
-            Built with Groq · Gemini · Mistral
+        </div>
+
+        {/* Right Side: Columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24 text-sm text-zinc-400">
+          <div className="flex flex-col gap-4">
+            <h6 className="text-[10px] uppercase font-bold text-zinc-600 tracking-widest mb-1">Useful</h6>
+            <a href="#" className="hover:text-zinc-100 transition-colors">Manifesto</a>
+            <a href="#" className="hover:text-zinc-100 transition-colors">Careers</a>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h6 className="text-[10px] uppercase font-bold text-zinc-600 tracking-widest mb-1">Legal</h6>
+            <a href="#" className="hover:text-zinc-100 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-zinc-100 transition-colors">Terms & Conditions</a>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h6 className="text-[10px] uppercase font-bold text-zinc-600 tracking-widest mb-1">Updates</h6>
+            <a href="#" className="hover:text-zinc-100 transition-colors">Twitter</a>
+            <a href="#" className="hover:text-zinc-100 transition-colors">Instagram</a>
           </div>
         </div>
-        <div>
-          <h5 className="text-zinc-100 font-bold mb-4">Platform</h5>
-          <ul className="space-y-2 text-zinc-500">
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Public Leaderboard</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Private Arena</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">API Access</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Integrations</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 className="text-zinc-100 font-bold mb-4">Company</h5>
-          <ul className="space-y-2 text-zinc-500">
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Privacy Policy</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Terms of Service</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Security</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">API Status</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 className="text-zinc-100 font-bold mb-4">Community</h5>
-          <ul className="space-y-2 text-zinc-500">
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Twitter</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Discord</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">GitHub</a></li>
-            <li><a className="hover:text-amber-400 transition-colors" href="#">Documentation</a></li>
-          </ul>
-        </div>
       </div>
-      <div className="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-zinc-900/50 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="text-zinc-500 text-xs">
-          © 2024 Gauntlet AI. Engineered for precision.
-        </div>
-        <div className="flex gap-6">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase">SYSTEMS_OPERATIONAL</span>
-        </div>
+
+      {/* Massive Background Text */}
+      <div className="absolute left-0 w-full flex justify-center pointer-events-none select-none z-0" 
+           style={{ bottom: '-15%', transform: 'translateY(10%)' }}>
+        <h1 className="font-headline font-bold text-[#b8b8b8] opacity-[0.9] tracking-tighter whitespace-nowrap m-0 p-0 scale-y-110" 
+            style={{ fontSize: 'min(24vw, 360px)', lineHeight: '0.75' }}>
+          GAUNTLET
+        </h1>
       </div>
+      
     </footer>
   );
 };

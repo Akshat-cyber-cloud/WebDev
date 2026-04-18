@@ -27,9 +27,37 @@ const State = new StateSchema({
     solution_1: new ReducedValue(z.string().default(""), {
         reducer: (current, next) => next ?? current,
     }),
+    solution_1_metrics: new ReducedValue(
+        z.object({
+            latency_ms: z.number().default(0),
+            prompt_tokens: z.number().default(0),
+            completion_tokens: z.number().default(0),
+            total_tokens: z.number().default(0),
+        }).default({
+            latency_ms: 0,
+            prompt_tokens: 0,
+            completion_tokens: 0,
+            total_tokens: 0,
+        }),
+        { reducer: (current, next) => next ?? current }
+    ),
     solution_2: new ReducedValue(z.string().default(""), {
         reducer: (current, next) => next ?? current,
     }),
+    solution_2_metrics: new ReducedValue(
+        z.object({
+            latency_ms: z.number().default(0),
+            prompt_tokens: z.number().default(0),
+            completion_tokens: z.number().default(0),
+            total_tokens: z.number().default(0),
+        }).default({
+            latency_ms: 0,
+            prompt_tokens: 0,
+            completion_tokens: 0,
+            total_tokens: 0,
+        }),
+        { reducer: (current, next) => next ?? current }
+    ),
     judge: new ReducedValue(
         z.object({
             solution_1_score: z.number().default(0),
@@ -55,14 +83,33 @@ const solutionNode: GraphNode<typeof State> = async (state) => {
 
     const systemMsg = new SystemMessage(FORMATTING_INSTRUCTION);
 
-    const [mistral_solution, gemini_solution] = await Promise.all([
-        mistralModel.invoke([systemMsg, message]),
-        geminiModel.invoke([systemMsg, message]),
-    ]);
+    const start1 = performance.now();
+    const mistral_solution = await mistralModel.invoke([systemMsg, message]);
+    const end1 = performance.now();
+
+    const start2 = performance.now();
+    const gemini_solution = await geminiModel.invoke([systemMsg, message]);
+    const end2 = performance.now();
+
+    // Standardized usage extraction in modern LangChain
+    const m1_usage = (mistral_solution as any).usage_metadata || (mistral_solution.response_metadata as any).tokenUsage || {};
+    const m2_usage = (gemini_solution as any).usage_metadata || (gemini_solution.response_metadata as any).usage || {};
 
     return {
         solution_1: mistral_solution.content as string,
+        solution_1_metrics: {
+            latency_ms: Math.round(end1 - start1),
+            prompt_tokens: m1_usage.input_tokens || m1_usage.promptTokens || 0,
+            completion_tokens: m1_usage.output_tokens || m1_usage.completionTokens || 0,
+            total_tokens: m1_usage.total_tokens || m1_usage.totalTokens || 0,
+        },
         solution_2: gemini_solution.content as string,
+        solution_2_metrics: {
+            latency_ms: Math.round(end2 - start2),
+            prompt_tokens: m2_usage.input_tokens || m2_usage.prompt_token_count || 0,
+            completion_tokens: m2_usage.output_tokens || m2_usage.candidates_token_count || 0,
+            total_tokens: m2_usage.total_tokens || m2_usage.total_token_count || 0,
+        },
     };
 };
 
@@ -120,7 +167,9 @@ export default async function runGraph(question: string) {
 
     return {
         solution_1: result.solution_1,
+        solution_1_metrics: result.solution_1_metrics,
         solution_2: result.solution_2,
+        solution_2_metrics: result.solution_2_metrics,
         judge: result.judge,
     };
 }

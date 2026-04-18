@@ -1,189 +1,182 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Ticker from '../ui/Ticker';
 
 const RadiantPortal = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Container for the light effect, centered vertically on the left edge */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-full flex items-center">
+      {/* Pure dark background */}
+      <div className="absolute inset-0 bg-[#0a0706]"></div>
 
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute left-[-15px] w-[40px] md:w-[60px] h-[30vh] md:h-[40vh] bg-white rounded-r-3xl z-20"
-          style={{
-            boxShadow: '0 0 40px 10px rgba(255,255,255,0.8), 0 0 100px 30px rgba(255,255,255,0.6)'
-          }}
-        ></motion.div>
+      {/* The white glowing door/source — anchored to the far left edge */}
+      <div
+        className="absolute top-1/2 -translate-y-1/2 z-20"
+        style={{
+          left: '-2px',
+          width: '18px',
+          height: '38vh',
+          background: 'white',
+          borderRadius: '0 10px 10px 0',
+          boxShadow: `
+            0 0 30px 15px rgba(255,255,255,1),
+            0 0 80px 40px rgba(255,255,255,0.8),
+            0 0 160px 80px rgba(255,200,100,0.4)
+          `,
+        }}
+      ></div>
 
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0.5 }}
-          animate={{ opacity: [0.6, 0.9, 0.6], scaleX: 1 }}
-          transition={{
-            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-            scaleX: { duration: 2, ease: "easeOut" }
-          }}
-          className="absolute left-0 w-[120vw] h-[200vh] origin-left"
-          style={{
-            clipPath: 'polygon(0 35%, 100% 0%, 100% 100%, 0 65%)',
-            background: 'linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,215,0,0.8) 5%, rgba(255,69,0,0.6) 20%, rgba(139,0,0,0.3) 50%, rgba(0,0,0,0) 80%)',
-            filter: 'blur(40px)',
-            mixBlendMode: 'screen'
-          }}
-        ></motion.div>
+      {/* Primary beam — wide cone, but fades to dark BEFORE reaching the text area */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2, ease: 'easeOut' }}
+        className="absolute top-1/2 -translate-y-1/2 left-0 origin-left"
+        style={{
+          width: '70vw',
+          height: '200vh',
+          clipPath: 'polygon(0 38%, 100% 0%, 100% 100%, 0 62%)',
+          background:
+            'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,130,20,0.85) 8%, rgba(220,50,0,0.55) 25%, rgba(140,10,0,0.2) 50%, rgba(0,0,0,0) 75%)',
+          filter: 'blur(45px)',
+          mixBlendMode: 'screen',
+        }}
+      ></motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0.5 }}
-          animate={{ opacity: [0.4, 0.7, 0.4], scaleX: 1 }}
-          transition={{
-            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 },
-            scaleX: { duration: 1.5, ease: "easeOut", delay: 0.2 }
-          }}
-          className="absolute left-0 w-[80vw] h-[100vh] origin-left"
-          style={{
-            clipPath: 'polygon(0 40%, 100% 20%, 100% 80%, 0 60%)',
-            background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,140,0,0.8) 10%, rgba(255,0,0,0.4) 40%, transparent 100%)',
-            filter: 'blur(30px)',
-            mixBlendMode: 'screen'
-          }}
-        ></motion.div>
+      {/* Inner brighter cone — tighter angle, shorter reach */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.9 }}
+        transition={{ duration: 1.8, ease: 'easeOut', delay: 0.1 }}
+        className="absolute top-1/2 -translate-y-1/2 left-0 origin-left"
+        style={{
+          width: '40vw',
+          height: '120vh',
+          clipPath: 'polygon(0 41%, 100% 20%, 100% 80%, 0 59%)',
+          background:
+            'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,180,50,0.9) 10%, rgba(255,80,0,0.5) 30%, transparent 100%)',
+          filter: 'blur(18px)',
+          mixBlendMode: 'screen',
+        }}
+      ></motion.div>
 
-        {/* Drifting Particles in the beam */}
-        <div className="absolute inset-0 overflow-hidden mix-blend-screen opacity-60">
-          {[...Array(30)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{
-                x: -100,
-                y: '50vh',
-                opacity: 0,
-                scale: Math.random() * 0.5 + 0.5
-              }}
-              animate={{
-                x: '100vw',
-                y: `${50 + (Math.random() - 0.5) * 80}vh`,
-                opacity: [0, 1, 0]
-              }}
-              transition={{
-                duration: Math.random() * 5 + 5,
-                repeat: Infinity,
-                delay: Math.random() * 10,
-                ease: "linear"
-              }}
-              className="absolute top-0 left-0 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
-            />
-          ))}
-        </div>
+      {/* Edge vignette — keeps right half of screen truly dark */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent 0%, transparent 20%, rgba(10,7,6,0.65) 50%, rgba(10,7,6,0.92) 70%, rgba(10,7,6,1) 100%)',
+        }}
+      ></div>
+
+      {/* Subtle top/bottom vignette */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(10,7,6,0.8) 0%, transparent 25%, transparent 75%, rgba(10,7,6,0.9) 100%)',
+        }}
+      ></div>
+
+      {/* Drifting particles inside the beam */}
+      <div className="absolute inset-0 overflow-hidden mix-blend-screen opacity-60 z-10">
+        {[...Array(25)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ x: -20, y: '50vh', opacity: 0 }}
+            animate={{
+              x: `${30 + Math.random() * 40}vw`,
+              y: `${50 + (Math.random() - 0.5) * 60}vh`,
+              opacity: [0, 0.8, 0],
+            }}
+            transition={{
+              duration: Math.random() * 5 + 4,
+              repeat: Infinity,
+              delay: Math.random() * 10,
+              ease: 'linear',
+            }}
+            className="absolute w-1 h-1 bg-white rounded-full"
+            style={{ boxShadow: '0 0 8px 2px rgba(255,200,100,0.9)' }}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-
 const Hero = () => {
-  const tickerItems = [
-    "BATTLE #8423: Claude 3 vs GPT-4 » VERDICT PENDING",
-    "SYS_LOG: 2.4k inference requests/sec",
-    "NODE_STATUS: ALL SYSTEMS GREEN",
-    "EVAL_PROTOCOL: STRICT_BLIND",
-    "BATTLE #8422: Llama-3 vs Mixtral » WINNER: LLAMA-3",
-  ];
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (custom) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: custom * 0.2, duration: 0.8, ease: "easeOut" }
-    })
-  };
+  const ease = [0.22, 1, 0.36, 1];
 
   return (
-    <header className="relative pt-40 pb-16 overflow-hidden arena-grid min-h-[90vh] flex flex-col items-center justify-center">
+    <header className="relative w-full h-screen min-h-[700px] overflow-hidden flex items-center">
       <RadiantPortal />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto px-8 relative z-10 text-center flex-1 flex flex-col justify-center">
-        <motion.div
-          custom={0}
-          initial="hidden"
-          animate="visible"
-          variants={titleVariants}
-          className="inline-block px-4 py-1.5 bg-surface-container-high rounded-full border border-primary/20 mb-8 mx-auto"
-        >
-          <span className="font-mono text-xs tracking-widest text-primary uppercase font-medium text-glow">
-            [ BLIND AI EVALUATION PLATFORM ]
-          </span>
-        </motion.div>
+      <div className="max-w-screen-xl mx-auto px-8 lg:px-16 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
+        {/* Left spacer — lets the light breathe */}
+        <div className="hidden lg:block" />
 
-        <h1 className="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-on-surface mb-6 leading-tight flex flex-col items-center">
-          <motion.span custom={1} initial="hidden" animate="visible" variants={titleVariants}>
-            Two Models Enter.
-          </motion.span>
-          <motion.span custom={2} initial="hidden" animate="visible" variants={titleVariants} className="text-primary">
-            One Gets Judged.
-          </motion.span>
-        </h1>
+        {/* Right column — all the content */}
+        <div className="flex flex-col items-start text-left">
 
-        <motion.p
-          custom={3}
-          initial="hidden"
-          animate="visible"
-          variants={titleVariants}
-          className="max-w-2xl mx-auto text-lg text-on-surface-variant font-light mb-12 leading-relaxed"
-        >
-          Empowering developers with unbiased, statistically rigorous side-by-side LLM benchmarks. Real-time inference battlegrounds for the next generation of AI.
-        </motion.p>
+          {/* Community avatar chip */}
+          {/* <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0, duration: 0.7, ease }}
+            className="flex items-center gap-2.5 px-2 py-1.5 bg-white/6 backdrop-blur-sm rounded-full border border-white/10 mb-8"
+          >
+            <div className="flex -space-x-1.5 pl-1">
+              {['Felix', 'Aneka', 'JD'].map((seed) => (
+                <img
+                  key={seed}
+                  src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`}
+                  alt="avatar"
+                  className="w-6 h-6 rounded-full border-2 border-[#0a0706] bg-zinc-700"
+                />
+              ))}
+            </div>
+          </motion.div> */}
 
-        <motion.div
-          custom={4}
-          initial="hidden"
-          animate="visible"
-          variants={titleVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-        >
-          <Link to="/register" className="group px-8 py-4 bg-primary text-background font-bold active:scale-95 duration-200 transition-all shadow-xl shadow-primary/10 flex items-center gap-2 uppercase text-xs tracking-widest relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></div>
-            <span className="relative z-10">Start Experimenting</span>
-            <span className="material-symbols-outlined transition-transform group-hover:translate-x-1 relative z-10">arrow_forward</span>
-          </Link>
-          <button className="px-8 py-4 border border-primary/30 text-primary font-semibold hover:bg-primary/5 active:scale-95 duration-200 transition-all uppercase text-xs tracking-widest">
-            See How It Works
-          </button>
-        </motion.div>
+          {/* Main headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12, duration: 0.85, ease }}
+            className="font-headline text-[2.8rem] sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.05] mb-6"
+          >
+            Two Models Enter.<br />
+            <span className="text-white/90">One Gets Judged.</span>
+          </motion.h1>
 
-        <motion.div
-          custom={5}
-          initial="hidden"
-          animate="visible"
-          variants={titleVariants}
-          className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto"
-        >
-          <div className="text-center p-6 bg-surface-container-lowest border border-primary/10 shadow-2xl shadow-black/50">
-            <div className="font-mono text-3xl font-bold text-primary mb-1">2,400+</div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-primary/50">Battles Recorded</div>
-          </div>
-          <div className="text-center p-6 bg-surface-container-lowest border border-primary/10 shadow-2xl shadow-black/50">
-            <div className="font-mono text-3xl font-bold text-primary mb-1">91%</div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-primary/50">Judgment Accuracy</div>
-          </div>
-          <div className="text-center p-6 bg-surface-container-lowest border border-primary/10 shadow-2xl shadow-black/50 col-span-2 md:col-span-1">
-            <div className="font-mono text-3xl font-bold text-primary mb-1">6</div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-primary/50">Battle Strategies</div>
-          </div>
-        </motion.div>
-      </div>
+          {/* Sub-copy */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.24, duration: 0.8, ease }}
+            className="text-base lg:text-lg text-zinc-400 font-light mb-10 leading-relaxed max-w-lg"
+          >
+            A serverless evaluation cloud for AI and ML workloads. Designed to help developers
+            build, train, and scale effortlessly with statistically rigorous side-by-side LLM benchmarks.
+          </motion.p>
 
-      <div className="w-full absolute bottom-0 left-0">
-        <Ticker items={tickerItems} speed={30} />
+          {/* CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.36, duration: 0.7, ease }}
+            className="flex items-center gap-4"
+          >
+            <Link
+              to="/register"
+              className="px-6 py-3 bg-white text-black text-sm font-semibold rounded-[6px] hover:bg-zinc-100 active:scale-95 transition-all duration-150"
+            >
+              Get started
+            </Link>
+          </motion.div>
+
+        </div>
       </div>
     </header>
   );
 };
 
 export default Hero;
-
-

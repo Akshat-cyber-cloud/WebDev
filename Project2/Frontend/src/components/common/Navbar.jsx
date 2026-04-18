@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
+import GauntletLogo from '../ui/GauntletLogo';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -25,15 +26,15 @@ const Navbar = () => {
     >
       <div className="flex justify-between items-center h-20 px-8 max-w-screen-2xl mx-auto font-headline tracking-tight">
         <div className="flex items-center gap-8">
-          <Link className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2" to="/">
-            <span className="material-symbols-outlined text-primary">bolt</span>
+          <Link className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2.5" to="/">
+            <GauntletLogo size={30} />
             Gauntlet AI
           </Link>
           <div className="hidden md:flex gap-6 items-center">
             <Link className="text-primary font-bold border-b-2 border-primary pb-1" to="#">Arena</Link>
             <a className="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Leaderboard</a>
             <a className="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Docs</a>
-            <a className="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Pricing</a>
+            {/* <a className="text-zinc-400 font-medium hover:text-zinc-100 transition-all duration-300" href="#">Pricing</a> */}
           </div>
         </div>
         <div className="flex items-center gap-4">

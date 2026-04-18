@@ -1,4 +1,5 @@
 import React from 'react';
+import GauntletLogo from '../ui/GauntletLogo';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
@@ -8,9 +9,8 @@ const ArenaNavbar = () => {
 
   const navLinks = [
     { name: 'Battle', path: '/battle' },
-    { name: 'Experiments', path: '/experiments' },
+    { name: 'History', path: '/history' },
     { name: 'Leaderboard', path: '/leaderboard' },
-    { name: 'Analytics', path: '/analytics' },
   ];
 
   return (
@@ -18,10 +18,8 @@ const ArenaNavbar = () => {
       <div className="max-w-screen-2xl mx-auto px-8 h-20 flex items-center justify-between">
         <div className="flex items-center gap-12">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-primary/20 flex items-center justify-center rounded-sm ghost-border group-hover:bg-primary/30 transition-all">
-              <span className="material-symbols-outlined text-primary text-xl">bolt</span>
-            </div>
+          <Link to="/" className="flex items-center gap-3 group">
+            <GauntletLogo size={32} />
             <span className="font-headline font-bold text-xl tracking-tight text-on-surface">
               GAUNTLET <span className="text-primary">AI</span>
             </span>

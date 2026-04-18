@@ -24,6 +24,8 @@ export const registerValidation = [
         .isLength({ min: 2, max: 100 })
         .notEmpty()
         .withMessage("Full name must be between 2 and 100 characters long"),
-
-        validateRequest
+    body("isSeller")
+        .isBoolean()
+        .withMessage("isSeller must be a boolean"),
+    validateRequest
 ]
