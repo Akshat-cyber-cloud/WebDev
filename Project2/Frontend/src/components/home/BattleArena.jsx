@@ -208,9 +208,60 @@ const BattleArena = () => {
         </form>
       </section>
 
-      {/* 3. Result Matrix (Battle Output Cards) */}
+      {/* 3. Skeleton Loading Grid (Shown during fusion) */}
       <AnimatePresence>
-        {showResults && results && (
+        {isFighting && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          >
+            {[1, 2].map((i) => (
+              <div
+                key={i}
+                className="bg-[#0a0a0a]/40 backdrop-blur-xl p-10 flex flex-col relative overflow-hidden min-h-[500px] rounded-lg border border-white/5"
+              >
+                {/* Header Skeleton */}
+                <div className="flex justify-between items-start mb-12">
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-full bg-zinc-800 animate-pulse"></div>
+                      <div className="w-24 h-3 bg-zinc-800 rounded animate-pulse"></div>
+                    </div>
+                    <div className="w-40 h-2 bg-zinc-900 rounded animate-pulse ml-6"></div>
+                  </div>
+                  <div className="flex gap-4">
+                     <div className="w-12 h-8 bg-zinc-900 rounded animate-pulse"></div>
+                     <div className="w-12 h-8 bg-zinc-900 rounded animate-pulse"></div>
+                  </div>
+                </div>
+
+                {/* Content Skeleton Lines */}
+                <div className="flex-1 space-y-4">
+                  <div className="w-full h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                  <div className="w-[90%] h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                  <div className="w-[95%] h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                  <div className="w-[70%] h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                  <div className="pt-4 w-[40%] h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                  <div className="w-full h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                  <div className="w-[85%] h-4 bg-zinc-900/50 rounded animate-pulse"></div>
+                </div>
+
+                {/* Bottom Bar Skeleton */}
+                <div className="mt-12 h-14 w-full bg-zinc-900/30 rounded-lg animate-pulse"></div>
+                
+                {/* Shimmer Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 4. Result Matrix (Battle Output Cards) */}
+      <AnimatePresence>
+        {showResults && results && !isFighting && (
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
