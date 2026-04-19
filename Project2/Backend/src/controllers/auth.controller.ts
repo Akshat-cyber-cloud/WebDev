@@ -96,12 +96,13 @@ export const getMe = async (req: Request, res: Response): Promise<void> => {
 // @access  Public
 export const googleCallback = async (req: Request, res: Response): Promise<void> => {
   const user = req.user as any;
+  const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
 
   if (user) {
     generateToken(res, user._id.toString());
-    res.redirect(process.env.FRONTEND_URL || 'http://localhost:5173/hello');
+    res.redirect(`${frontendUrl}/battle`);
   } else {
-    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`);
+    res.redirect(`${frontendUrl}/login?error=auth_failed`);
   }
 };
 
