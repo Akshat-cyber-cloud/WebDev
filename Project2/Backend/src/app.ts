@@ -15,6 +15,8 @@ dotenv.config();
 configurePassport();
 const app = express();
 
+// Trust Render's proxy for secure cookies
+app.set('trust proxy', 1);
 
 // Middlewares
 app.use(express.json());
