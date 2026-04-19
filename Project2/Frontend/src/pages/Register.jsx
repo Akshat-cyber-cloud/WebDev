@@ -143,7 +143,7 @@ const Register = () => {
 
         {/* Third Party Login */}
         <button
-          onClick={() => window.location.href = 'http://localhost:3000/api/auth/google'}
+          onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/google`}
           className="w-full bg-white/[0.03] border border-white/[0.1] text-zinc-300 py-3.5 rounded-lg font-mono text-[10px] uppercase tracking-widest hover:bg-white/[0.06] hover:border-white/[0.2] transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
