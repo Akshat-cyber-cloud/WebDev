@@ -64,35 +64,50 @@ const LeaderboardPage = () => {
 
       <main className="max-w-7xl mx-auto px-8 py-32">
         <header className="mb-20 text-center md:text-left">
-          <div className="font-mono text-[10px] text-primary uppercase tracking-[0.5em] mb-4">High_Frequency_Analytics_v1.0</div>
+          <div className="font-mono text-[10px] text-primary uppercase tracking-[0.5em] mb-4">GLOBAL_MODEL_PERFORMANCE_STATS</div>
           <h1 className="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-on-surface mb-6">
-            Elite <span className="text-primary italic">Standings.</span>
+            AI <span className="text-primary italic">Leaderboard.</span>
           </h1>
           <p className="text-on-surface-variant max-w-2xl font-light text-xl">
-             Live win-rates and performance metrics across {stats?.totalBattles || 0} recorded collisions.
+             Real-time performance metrics and quality ratings across {stats?.totalBattles || 0} total AI battles.
           </p>
         </header>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="font-mono text-primary animate-pulse uppercase tracking-[0.4em] text-xs">Calibrating Ranks...</div>
+            <div className="font-mono text-primary animate-pulse uppercase tracking-[0.4em] text-xs">Loading Rankings...</div>
           </div>
         ) : error ? (
           <div className="bg-error/10 border border-error/20 p-8 text-error font-mono text-sm uppercase tracking-widest text-center">
             {error}
           </div>
         ) : (
-          <div className="space-y-12">
-            {/* Summary Cards */}
+          <div className="space-y-16">
+            {/* 1. Evaluation Criteria Section */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+               {[
+                 { title: 'Quality Score', desc: 'Average rating (1-10) assigned by our AI judge based on accuracy and depth.' },
+                 { title: 'Win Rate', desc: 'Percentage of battles where this model provided the superior response.' },
+                 { title: 'Response Speed', desc: 'Average time taken to generate a complete neural output.' },
+                 { title: 'User Preference', desc: 'Number of times human researchers manually selected this model as the winner.' }
+               ].map((item, i) => (
+                 <div key={i} className="bg-surface-container/30 border border-outline-variant/10 p-6 rounded-lg">
+                    <h4 className="font-headline font-bold text-primary text-sm uppercase tracking-widest mb-2">{item.title}</h4>
+                    <p className="text-[11px] text-on-surface/50 leading-relaxed font-light">{item.desc}</p>
+                 </div>
+               ))}
+            </div>
+
+            {/* 2. Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                <div className="bg-surface-container-low border border-outline-variant/10 p-8 text-center md:text-left shadow-2xl">
-                  <p className="font-mono text-[10px] text-on-surface/30 uppercase tracking-widest mb-4">Total Collisions</p>
+                  <p className="font-mono text-[10px] text-on-surface/30 uppercase tracking-widest mb-4">Total Battles</p>
                   <h2 className="text-5xl font-bold text-on-surface font-headline">{stats.totalBattles}</h2>
                </div>
                {ranks.map((rank, i) => (
                  <div key={i} className={`bg-surface-container-low border ${rank.border} p-8 relative overflow-hidden group`}>
                     <div className={`absolute top-0 right-0 p-4 font-mono text-sm font-bold opacity-10 group-hover:opacity-100 transition-opacity ${rank.color}`}>
-                       #{i + 1}
+                       RANK #{i + 1}
                     </div>
                     <p className="font-mono text-[10px] text-on-surface/30 uppercase tracking-widest mb-4">{rank.name} WIN RATE</p>
                     <div className="flex items-baseline gap-2">
@@ -103,10 +118,10 @@ const LeaderboardPage = () => {
                ))}
             </div>
 
-            {/* Detailed Table */}
+            {/* 3. Detailed Performance Table */}
             <div className="bg-surface-container-low border border-outline-variant/10 overflow-hidden shadow-2xl">
                <div className="bg-surface-container px-8 py-4 border-b border-outline-variant/10 flex justify-between items-center">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-on-surface/40">Observatory_Telemetry</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-on-surface/40">Detailed_Metrics_Audit</span>
                   <div className="flex gap-2">
                       <div className="w-2 h-2 rounded-full bg-primary/40"></div>
                       <div className="w-2 h-2 rounded-full bg-secondary/40"></div>
@@ -116,11 +131,11 @@ const LeaderboardPage = () => {
                   <table className="w-full text-left border-collapse">
                      <thead>
                         <tr className="border-b border-outline-variant/10 font-mono text-[10px] text-on-surface/30 uppercase tracking-widest">
-                           <th className="px-8 py-6">Tier_Rank</th>
-                           <th className="px-8 py-6">Entity_ID</th>
-                           <th className="px-8 py-6">Judge_Score_Avg</th>
-                           <th className="px-8 py-6">Latency_Avg</th>
-                           <th className="px-8 py-6">User_Preference</th>
+                           <th className="px-8 py-6">Rank</th>
+                           <th className="px-8 py-6">AI Model</th>
+                           <th className="px-8 py-6">Avg Quality Score</th>
+                           <th className="px-8 py-6">Avg Speed</th>
+                           <th className="px-8 py-6">User Preference</th>
                         </tr>
                      </thead>
                      <tbody className="divide-y divide-outline-variant/5">
@@ -152,7 +167,7 @@ const LeaderboardPage = () => {
                                  <div className="flex items-center gap-2">
                                     <span className="material-symbols-outlined text-sm opacity-30">person</span>
                                     <span className="text-sm font-bold text-on-surface">{rank.userWins}</span>
-                                    <span className="text-[10px] text-on-surface/20 uppercase font-mono italic ml-2">Final_Verdicts</span>
+                                    <span className="text-[10px] text-on-surface/20 uppercase font-mono italic ml-2">User Votes</span>
                                  </div>
                               </td>
                            </tr>
@@ -162,7 +177,8 @@ const LeaderboardPage = () => {
                </div>
             </div>
           </div>
-        )}
+        )
+}
       </main>
 
       {/* Background Decorative Element */}

@@ -190,9 +190,9 @@ const BattleArena = () => {
 
           {/* Micro HUD Metadata */}
           <div className="absolute -bottom-8 left-6 flex gap-6 opacity-30 group-focus-within:opacity-60 transition-opacity">
-             <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-primary">System_Link: v9.4</span>
+             <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-primary">AI Engine Online</span>
              <span className={`font-mono text-[8px] uppercase tracking-[0.3em] ${isFighting ? 'text-primary animate-pulse' : ''}`}>
-               {isFighting ? 'PRCESSING_FUSION_SEQUENCE...' : 'Buffer_Idle'}
+               {isFighting ? 'Generating Side-by-Side Analysis...' : 'Ready for Input'}
              </span>
           </div>
 
