@@ -1,0 +1,21 @@
+<!-- What is React JS -->
+Reactjs is a javascript library use to build a single page application
+
+<!-- Library vs Framework -->
+Framework is a pre defined structure(exo skeleton)
+Library on the other hand is whenever I need any specific thing I have to download it (pre defined block of code)
+
+<!-- Why We Need Reactjs -->
+React Based follows Component based architecture - loads component by component - by - Jordan - Facebook
+
+<!-- DOM vs Virtual DOM -->
+The Real DOM is the actual representation of the webpage, and updating it directly is slow because every change affects the UI immediately.
+
+Virtual DOM is a lightweight copy used by React. It updates in memory first, compares changes using diffing, and then updates only the necessary parts of the real DOM, making it faster and more efficient
+
+<!-- Export vs Import -->
+
+default export - In any js file only 1 is possible
+named export - Multiple export in a single file is possible
+use import {} -> destructure
+
