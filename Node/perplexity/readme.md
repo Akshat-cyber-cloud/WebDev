@@ -235,12 +235,12 @@ git push origin feature/your-feature-name
 
 ## 👤 Author
 
-Made with 🔥 by **[Your Name]**
-- GitHub: [@yourusername](https://github.com/Akshat-cyber-cloud)
-- LinkedIn: [yourlinkedin](https://www.linkedin.com/in/akshat-gupta132/)
+Made with 🔥 by **Akshat Gupta**
+- GitHub: [Akshat-cyber-cloud](https://github.com/Akshat-cyber-cloud)
+- LinkedIn: [Akshat](https://www.linkedin.com/in/akshat-gupta132/)
 
 ---
 
 <p align="center">
   <b>Ember AI — Stay informed. Stay connected. Stay ahead.</b>
-</p>
+</p
