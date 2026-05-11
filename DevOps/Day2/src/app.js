@@ -10,6 +10,7 @@ app.get('/api/data', (req, res) => {
     const data = {
         name: 'John Doe',
         age: 30,
+        city: 'New York'
     };
     res.json(data);
 });
