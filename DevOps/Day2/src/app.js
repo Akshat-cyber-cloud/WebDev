@@ -7,11 +7,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/data', (req, res) => {
-    const data = {
+    const data = [{
         name: 'John Doe',
         age: 30,
         city: 'New York'
-    };
+    }, {
+        name: 'Jane Smith',
+        age: 25,
+        city: 'Los Angeles'
+    }];
     res.json(data);
 });
 
