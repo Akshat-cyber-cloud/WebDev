@@ -6,7 +6,6 @@ export interface IUser extends Document {
   password?: string;
   googleId?: string;
   matchPassword: (enteredPassword: string) => Promise<boolean>;
-
   createdAt: Date;
   updatedAt: Date;
 }
