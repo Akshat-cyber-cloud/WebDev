@@ -1,7 +1,7 @@
 import type { Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-const generateToken = (res: Response, userId: string) => {
+const generateToken = (res: Response, userId: string): string => {
   const token = jwt.sign(
     { userId },
     (process.env.JWT_SECRET as string) || 'secret',
@@ -18,6 +18,8 @@ const generateToken = (res: Response, userId: string) => {
     sameSite: process.env.NODE_ENV === 'development' ? 'strict' : 'none', 
     maxAge: cookieExpireDays * 24 * 60 * 60 * 1000,
   });
+
+  return token;
 };
 
 export default generateToken;

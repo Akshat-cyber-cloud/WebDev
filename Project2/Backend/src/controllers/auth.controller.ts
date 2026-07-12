@@ -23,12 +23,13 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     });
 
     if (user) {
-      generateToken(res, user._id.toString());
+      const token = generateToken(res, user._id.toString());
 
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
+        token,
       });
     } else {
       res.status(400).json({ message: 'Invalid user data' });
@@ -48,12 +49,13 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const user = await User.findOne({ email }).select('+password');
 
     if (user && (await user.matchPassword(password))) {
-      generateToken(res, user._id.toString());
+      const token = generateToken(res, user._id.toString());
 
       res.json({
         _id: user._id,
         name: user.name,
         email: user.email,
+        token,
       });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
@@ -101,8 +103,8 @@ export const googleCallback = async (req: Request, res: Response): Promise<void>
   const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
 
   if (user) {
-    generateToken(res, user._id.toString());
-    res.redirect(`${frontendUrl}/battle`);
+    const token = generateToken(res, user._id.toString());
+    res.redirect(`${frontendUrl}/battle?token=${token}`);
   } else {
     res.redirect(`${frontendUrl}/login?error=auth_failed`);
   }
