@@ -10,6 +10,7 @@ const configurePassport = () => {
         clientID: process.env.GOOGLE_CLIENT_ID as string,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         callbackURL: process.env.CALLBACK_URL as string,
+        proxy: true, // Required for Render's reverse proxy to construct the correct callback URL
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
